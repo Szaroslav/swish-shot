@@ -4,5 +4,7 @@ COINS_TEXT=RUBIES
 PLAY_AGAIN_TEXT=PLAY AGAIN
 CONTINUE_TEXT=CONTINUE
 CUSTOMIZE_TEXT=CUSTOMIZE
+BUY_TEXT=BUY
+OWNED_TEXT=OWNED
 SHARE_WINDOW_TITLE_TEXT=Share with your friends using:
 SHARE_MESSAGE_TEXT=I've just scored @score points in Swish Shot (https://play.google.com/store/apps/details?id=com.szaredko.basketball). Would you beat me? =)

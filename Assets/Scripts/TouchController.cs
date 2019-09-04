@@ -71,15 +71,15 @@ public class TouchController : MonoBehaviour
         }
     }
 
-    protected void OnDrawGizmos()
+    /*protected void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(gizmoStart, gizmoEnd);
-    }
+    }*/
 
     protected void OnApplicationPause(bool pause)
     {
-        if (pause)
+        if (pause && !ball.moving)
             ResetInput();
     }
 

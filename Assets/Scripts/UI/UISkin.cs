@@ -20,6 +20,7 @@ public class UISkin : MonoBehaviour
     public void OnStart()
     {
         skin = ui.ballSkins.GetSprite(skinName);
+        skin.name = skinName;
         skinImage.sprite = skin;
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = price.ToString();
         buyButton.onClick.AddListener(() => OnBuy(false));
@@ -48,7 +49,8 @@ public class UISkin : MonoBehaviour
         ui.availableBallSkins.Remove(this);
         buyButton.enabled = false;
         buyButton.image.color = new Color(0.5f, 0.5f, 0.5f);
-        buyButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "OWNED";
+        buyButton.transform.GetChild(0).gameObject.SetActive(false);
+        buyButton.transform.GetChild(1).gameObject.SetActive(true);
         GetComponent<Button>().interactable = true;
     }
 
@@ -70,6 +72,7 @@ public class UISkin : MonoBehaviour
             yield return null;
 
         Sprite s = req.asset as Sprite;
+        ui.currentBallSkin.sprite = s;
         Progress.Instance.SetBallSkin(s);
         Game.Instance.ball.SetSkin(s);
     }
