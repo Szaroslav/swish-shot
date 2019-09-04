@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ui
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 2
+      generateMipMaps: 1
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 35c822f5a220f684386dbc933e69b7d5, type: 3}
+    - {fileID: 102900000, guid: 74e2ee443146b974bacf651a32907e45, type: 3}
+    totalSpriteSurfaceArea: 551312
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ee026d201ac22204796e512335b66705, type: 3}
+  - {fileID: 21300000, guid: 94e16d014bd70fd4eadfe0e89dfffd56, type: 3}
+  - {fileID: 21300000, guid: 47f415e280a9f51438e4f7f04593ebd5, type: 3}
+  - {fileID: 21300000, guid: 9e23bd8658c3e1d49aa05c9a3399143b, type: 3}
+  - {fileID: 21300000, guid: 5ec6b677d6cfdbd4f8ad856ae662af81, type: 3}
+  - {fileID: 21300000, guid: cda704387a5d7a542a84d3099382ddc9, type: 3}
+  - {fileID: 21300000, guid: 1657ea98906f85f44b68aa9fc6c887c3, type: 3}
+  - {fileID: 21300000, guid: e53844a89a397a54e95a6ddfd2bf0750, type: 3}
+  - {fileID: 21300000, guid: 342943e829876124e83994f0d6f515f1, type: 3}
+  - {fileID: 21300000, guid: fc6b3df895040ac4e9d8b3679645ae14, type: 3}
+  - {fileID: 21300000, guid: 9f9ec5194ec73da48a0040b211e5b3c4, type: 3}
+  - {fileID: 21300000, guid: cc5cca3ad731f6a40b9ef3c725013e04, type: 3}
+  - {fileID: 21300000, guid: 1361150b227a94e4393159e82c7b410e, type: 3}
+  - {fileID: 21300000, guid: 7101864b4f7cf874cb5fe37e0b7ae132, type: 3}
+  - {fileID: 21300000, guid: 47ff110c5ffb4fc43957121ed159ae88, type: 3}
+  - {fileID: 21300000, guid: e313af1c891604f46ab6ea54490ef36b, type: 3}
+  - {fileID: 21300000, guid: 5d26f33cf3300ef47b27e4dc7df50a52, type: 3}
+  - {fileID: 21300000, guid: 601da06cef1ff7e458e9397d82eb72fd, type: 3}
+  - {fileID: 21300000, guid: 53d0d4cd44c507a4488f94cabddac585, type: 3}
+  - {fileID: 21300000, guid: 5348281e5f09c0943b4f625497b88457, type: 3}
+  - {fileID: 21300000, guid: 3cd5ecfe0cf7ab74a9ed0dfeb810de0c, type: 3}
+  - {fileID: 21300000, guid: 63f709ffb02691741adfa94632acb9e8, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - floor
+  - square-gradient
+  - settings
+  - rounded-square-border
+  - rate
+  - rounded-square
+  - leaderboard
+  - play-again
+  - crown
+  - caret-right
+  - caret-left
+  - square
+  - hoop
+  - rounded-square-half
+  - pause
+  - share
+  - ad-continue
+  - customize
+  - basketball
+  - circle
+  - ruby
+  - tutorial-guy
+  m_Tag: ui
+  m_IsVariant: 0

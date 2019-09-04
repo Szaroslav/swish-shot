@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: skins_ball_256x256
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 2
+      generateMipMaps: 1
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 2
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 9923d853e8b29e445bd164abc421e63c, type: 3}
+    totalSpriteSurfaceArea: 983040
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e3a711c007017a94cabe08a75bd1088e, type: 3}
+  - {fileID: 21300000, guid: 1506c0f410e988442a0f94b86d17b61f, type: 3}
+  - {fileID: 21300000, guid: b1e4124534a3d9c459fc1f386ff4f866, type: 3}
+  - {fileID: 21300000, guid: 354445f52feb6f044959b0e63d6b654b, type: 3}
+  - {fileID: 21300000, guid: 2ccb35a6096fab94995fcc300d935075, type: 3}
+  - {fileID: 21300000, guid: e65056b785749c747a6c99ed6d6b5042, type: 3}
+  - {fileID: 21300000, guid: a12eb36880aab5645b11ce777e43c902, type: 3}
+  - {fileID: 21300000, guid: 408eb4a9f00b3a94fa55a652787a1cb4, type: 3}
+  - {fileID: 21300000, guid: b996c86ab07ffd648a805dff9ce812b6, type: 3}
+  - {fileID: 21300000, guid: 973a52fadc30504419174120a120529c, type: 3}
+  - {fileID: 21300000, guid: 5790113bf3d0b364399f4393507fba0a, type: 3}
+  - {fileID: 21300000, guid: 43b098ed09318c94f87ac448471703fb, type: 3}
+  - {fileID: 21300000, guid: 047b40beaa2d5994994cbcf0a02709c4, type: 3}
+  - {fileID: 21300000, guid: f62ecc6fc0be84740a96515d506c416f, type: 3}
+  - {fileID: 21300000, guid: ab4f558f4d1bc64469d801188a566b63, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - basketball_red
+  - volleyball
+  - basketball_black_red
+  - basketball_black_cyan
+  - basketball_white_yellow
+  - golf
+  - basketball_green
+  - basketball_black
+  - baseball
+  - basketball_yellow
+  - basketball_white_green
+  - basketball_default
+  - tennis
+  - basketball_cyan
+  - football
+  m_Tag: skins_ball_256x256
+  m_IsVariant: 0
