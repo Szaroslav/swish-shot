@@ -79,7 +79,7 @@ public class TouchController : MonoBehaviour
 
     protected void OnApplicationPause(bool pause)
     {
-        if (pause && !ball.moving)
+        if (pause && ball.touched)
             ResetInput();
     }
 
@@ -112,6 +112,7 @@ public class TouchController : MonoBehaviour
 
     public void ResetInput()
     {
+        ball.touched = false;
         ball.transform.position = ballPosition;
     }
 
