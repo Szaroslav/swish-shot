@@ -32,10 +32,11 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: 35c822f5a220f684386dbc933e69b7d5, type: 3}
     - {fileID: 102900000, guid: 74e2ee443146b974bacf651a32907e45, type: 3}
-    totalSpriteSurfaceArea: 551312
+    totalSpriteSurfaceArea: 572304
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 3c83382073096d54689e741d6c8b4511, type: 3}
   - {fileID: 21300000, guid: ee026d201ac22204796e512335b66705, type: 3}
   - {fileID: 21300000, guid: 94e16d014bd70fd4eadfe0e89dfffd56, type: 3}
   - {fileID: 21300000, guid: 47f415e280a9f51438e4f7f04593ebd5, type: 3}
@@ -48,6 +49,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fc6b3df895040ac4e9d8b3679645ae14, type: 3}
   - {fileID: 21300000, guid: 9f9ec5194ec73da48a0040b211e5b3c4, type: 3}
   - {fileID: 21300000, guid: cc5cca3ad731f6a40b9ef3c725013e04, type: 3}
+  - {fileID: 21300000, guid: 79bf945a1da255e48a43ad75e14e189a, type: 3}
   - {fileID: 21300000, guid: 1361150b227a94e4393159e82c7b410e, type: 3}
   - {fileID: 21300000, guid: 7101864b4f7cf874cb5fe37e0b7ae132, type: 3}
   - {fileID: 21300000, guid: 47ff110c5ffb4fc43957121ed159ae88, type: 3}
@@ -59,6 +61,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3cd5ecfe0cf7ab74a9ed0dfeb810de0c, type: 3}
   - {fileID: 21300000, guid: 63f709ffb02691741adfa94632acb9e8, type: 3}
   m_PackedSpriteNamesToIndex:
+  - arrow-left
   - floor
   - square-gradient
   - settings
@@ -71,6 +74,7 @@ SpriteAtlas:
   - caret-right
   - caret-left
   - square
+  - arrow-right
   - hoop
   - rounded-square-half
   - pause

@@ -6,6 +6,24 @@ public class UILanguages : MonoBehaviour
 
     private int index = 0;
 
+    protected void Start()
+    {
+        for (int i = 0; i < languages.Length; i++)
+        {
+            GameObject o = languages[i];
+
+            if (o.GetComponent<UILanguage>().language == Localization.Instance.currentLocalization)
+            {
+                index = i;
+                o.SetActive(true);
+            }
+            else
+            {
+                o.SetActive(false);
+            }
+        }
+    }
+
     public void IncrementLanguage()
     {
         languages[index++].SetActive(false);
@@ -22,10 +40,5 @@ public class UILanguages : MonoBehaviour
         languages[index].SetActive(true);
         
         Localization.Instance.SetLanguage(languages[index].GetComponent<UILanguage>().language);
-    }
-
-    public void SetLanguage(SystemLanguage l)
-    {
-        Localization.Instance.SetLanguage(Localization.GetLanguage(l));
     }
 }
