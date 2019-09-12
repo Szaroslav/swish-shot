@@ -8148,7 +8148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb1f9e29731dee408a927ced8d08c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testMode: 1
+  testMode: 0
   bannerId: banner
   rewardedId: rewardedVideo
 --- !u!114 &677633507
@@ -16153,7 +16153,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1372939042}
   m_OnClick:
     m_PersistentCalls:
@@ -16184,7 +16184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9254902, g: 0.18431373, b: 0.19215687, a: 1}
+  m_Color: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

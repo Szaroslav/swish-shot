@@ -162,7 +162,7 @@ PlayerSettings:
     Android: com.szaredko.basketball
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 12
+  AndroidBundleVersionCode: 15
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1

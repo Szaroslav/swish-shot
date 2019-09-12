@@ -164,7 +164,7 @@ public class Ball : MonoBehaviour
         float m = v.magnitude;
         v.Normalize();
 
-        if (v.x > -FIX_BOUNCE_X && v.x < FIX_BOUNCE_X)
+        if (!Game.Instance.hoop.moving && v.x > -FIX_BOUNCE_X && v.x < FIX_BOUNCE_X)
             return new Vector2(v.x >= 0 ? FIX_BOUNCE_X : -FIX_BOUNCE_X, v.y) * m;
 
         return v * m;

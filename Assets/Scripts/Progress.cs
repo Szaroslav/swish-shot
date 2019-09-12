@@ -25,7 +25,7 @@ public class Progress : Singleton<Progress>
         gameCoins = score = 0;
         bestScore = LoadInt(BEST_SCORE_KEY);
         coins = LoadFloat(COINS_KEY);
-        coins = 250;
+        //coins = 250;
         string n = LoadString(SKIN_BALL_KEY, "basketball_default");
         currentBallSkin = Resources.Load<Sprite>(UIShop.BALL_L_SKINS_PATH + n);
     }
@@ -34,7 +34,6 @@ public class Progress : Singleton<Progress>
     {
         SetBestScore(score);
         SetCoins(points);
-        GPGS.SaveScore(bestScore, GPGSIds.leaderboard_endless_mode);
     }
 
     public void SetScore(int points)
@@ -49,6 +48,7 @@ public class Progress : Singleton<Progress>
         {
             bestScore = score;
             SaveInt(BEST_SCORE_KEY, bestScore);
+            GPGS.SaveScore(bestScore, GPGSIds.leaderboard_endless_mode);
         }
     }
 
@@ -56,7 +56,7 @@ public class Progress : Singleton<Progress>
     {
         this.coins += coins;
         gameCoins += coins;
-        SaveFloat(COINS_KEY, coins);
+        SaveFloat(COINS_KEY, this.coins);
     }
 
     public string GetCoinsText()
