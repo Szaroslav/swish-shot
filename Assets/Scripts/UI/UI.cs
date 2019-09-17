@@ -29,6 +29,8 @@ public class UI : MonoBehaviour
 
     public void Show()
     {
+        UpdateScores();
+
         CanvasGroup world = worldUI.GetComponent<CanvasGroup>();
         CanvasGroup screen = screenUI.GetComponent<CanvasGroup>();
         world.alpha = screen.alpha = 1;

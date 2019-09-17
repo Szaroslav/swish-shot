@@ -8,8 +8,7 @@ public class UIShop : MonoBehaviour
 {
     public const float COINS_DURATION = 0.15f;
     public const string BALL_L_SKINS_PATH = "Skins/Balls/512x512/";
-
-
+    
     public SpriteAtlas ballSkins;
 
     public UICoinsAnim coins;
@@ -33,6 +32,8 @@ public class UIShop : MonoBehaviour
 
     public void Show()
     {
+        coins.tmp.text = Progress.Instance.GetCoinsText();
+
         CanvasGroup c = GetComponent<CanvasGroup>();
         c.alpha = 1;
         c.interactable = c.blocksRaycasts = GetComponent<GraphicRaycaster>().enabled = true;
@@ -57,8 +58,9 @@ public class UIShop : MonoBehaviour
 
     public void SetCoins(int value)
     {
-        coins.Set(COINS_DURATION, value);
-        Progress.Instance.coins -= 1;
+        if (Progress.Instance.coins > 999 && value <= 999) coins.Set(0, value);
+        else if (Progress.Instance.coins <= 999) coins.Set(COINS_DURATION, value);
+        Progress.Instance.SetCoins(value - (int)Progress.Instance.coins);
     }
 
     public void OnRandom()

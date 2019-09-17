@@ -28,11 +28,18 @@ public class UICoinsAnim : Anim
 
     public void Set(float duration, float targetValue)
     {
-        time = 0;
-        sourceValue = Progress.Instance.coins;
-        this.duration = duration;
-        this.targetValue = targetValue;
+        if (duration == 0)
+        {
+            tmp.text = targetValue.ToString();
+        }
+        else
+        {
+            time = 0;
+            sourceValue = Progress.Instance.coins;
+            this.duration = duration;
+            this.targetValue = targetValue;
 
-        enabled = true;
+            enabled = true;
+        }
     }
 }

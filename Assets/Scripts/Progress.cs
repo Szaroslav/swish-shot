@@ -25,7 +25,7 @@ public class Progress : Singleton<Progress>
         gameCoins = score = 0;
         bestScore = LoadInt(BEST_SCORE_KEY);
         coins = LoadFloat(COINS_KEY);
-        //coins = 250;
+        coins = 1150;
         string n = LoadString(SKIN_BALL_KEY, "basketball_default");
         currentBallSkin = Resources.Load<Sprite>(UIShop.BALL_L_SKINS_PATH + n);
     }
@@ -61,7 +61,7 @@ public class Progress : Singleton<Progress>
 
     public string GetCoinsText()
     {
-        return ((int)coins).ToString();
+        return coins <= 999 ? ((int)coins).ToString() : "+999";
     }
 
     public string GetGameCoinsText()

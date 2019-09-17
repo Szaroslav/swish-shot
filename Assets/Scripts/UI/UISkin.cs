@@ -56,7 +56,7 @@ public class UISkin : MonoBehaviour
 
     public void ChangeSkin()
     {
-        if (skin != ui.currentBallSkin.sprite)
+        if (skin.name != ui.currentBallSkin.sprite.name)
         {
             ui.currentBallSkin.sprite = skin;
             StartCoroutine(LoadSkinAsync(UIShop.BALL_L_SKINS_PATH + skinName));
