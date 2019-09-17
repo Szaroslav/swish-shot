@@ -43,13 +43,14 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: 35c822f5a220f684386dbc933e69b7d5, type: 3}
     - {fileID: 102900000, guid: 74e2ee443146b974bacf651a32907e45, type: 3}
-    totalSpriteSurfaceArea: 572304
+    totalSpriteSurfaceArea: 637840
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 3c83382073096d54689e741d6c8b4511, type: 3}
   - {fileID: 21300000, guid: ee026d201ac22204796e512335b66705, type: 3}
   - {fileID: 21300000, guid: 94e16d014bd70fd4eadfe0e89dfffd56, type: 3}
+  - {fileID: 21300000, guid: 713788d2630aaab4896c44536c5f761f, type: 3}
   - {fileID: 21300000, guid: 47f415e280a9f51438e4f7f04593ebd5, type: 3}
   - {fileID: 21300000, guid: 9e23bd8658c3e1d49aa05c9a3399143b, type: 3}
   - {fileID: 21300000, guid: 5ec6b677d6cfdbd4f8ad856ae662af81, type: 3}
@@ -75,6 +76,7 @@ SpriteAtlas:
   - arrow-left
   - floor
   - square-gradient
+  - ring
   - settings
   - rounded-square-border
   - rate
