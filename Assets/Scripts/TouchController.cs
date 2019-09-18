@@ -62,7 +62,8 @@ public class TouchController : MonoBehaviour
                 {
                     Vector2 swipeDelta = (Vector2)currentPosition - startPosition;
 
-                    if (swipeDelta.magnitude >= MIN_SWIPE_MAGNITUDE && swipeDelta.magnitude < MAX_SWIPE_MAGNITUDE && swipeDelta.y >= 0)
+                    if (swipeDelta.magnitude >= MIN_SWIPE_MAGNITUDE && swipeDelta.magnitude <= MAX_SWIPE_MAGNITUDE 
+                        && swipeDelta.y >= 0)
                         ThrowBall(swipeDelta, 1);
                     else
                         ResetInput();

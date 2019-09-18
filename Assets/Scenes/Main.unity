@@ -4162,6 +4162,7 @@ MonoBehaviour:
   coins: {fileID: 1077831758}
   skinsScrollRect: {fileID: 873552809}
   currentBallSkin: {fileID: 1683531488}
+  randomPrice: {fileID: 1250110637}
   availableBallSkins: []
 --- !u!114 &312187558
 MonoBehaviour:
@@ -14719,7 +14720,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 75
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a39b555052b3d194eb17f71b6479fea8, type: 2}
   m_sharedMaterial: {fileID: -7948640534295311721, guid: a39b555052b3d194eb17f71b6479fea8,
@@ -14789,7 +14790,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1250110637}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -17698,7 +17699,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521310026}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -17716,7 +17717,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0

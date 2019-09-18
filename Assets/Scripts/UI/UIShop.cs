@@ -3,17 +3,20 @@ using UnityEngine.UI;
 using UnityEngine.U2D;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class UIShop : MonoBehaviour
 {
-    public const float COINS_DURATION = 0.15f;
-    public const string BALL_L_SKINS_PATH = "Skins/Balls/512x512/";
+    public const int RANDOM_BALL_PRICE        = 70;
+    public const float COINS_DURATION       = 0.15f;
+    public const string BALL_L_SKINS_PATH   = "Skins/Balls/512x512/";
     
     public SpriteAtlas ballSkins;
 
     public UICoinsAnim coins;
     public ScrollRect skinsScrollRect;
     public Image currentBallSkin;
+    public TextMeshProUGUI randomPrice;
 
     [HideInInspector]
     public List<UISkin> availableBallSkins = new List<UISkin>();
@@ -25,6 +28,7 @@ public class UIShop : MonoBehaviour
         coins.tmp.text = Progress.Instance.GetCoinsText();
         currentBallSkin.sprite = Progress.Instance.currentBallSkin;
         scrollAnim = skinsScrollRect.GetComponent<UIScrollAnim>();
+        randomPrice.text = RANDOM_BALL_PRICE.ToString();
 
         foreach (Transform t in skinsScrollRect.content.transform)
             t.GetComponent<UISkin>().OnStart();
@@ -65,9 +69,9 @@ public class UIShop : MonoBehaviour
 
     public void OnRandom()
     {
-        if (Progress.Instance.coins >= 1 && availableBallSkins.Count > 0 && !scrollAnim.enabled)
+        if (Progress.Instance.coins >= RANDOM_BALL_PRICE && availableBallSkins.Count > 0 && !scrollAnim.enabled)
         {
-            SetCoins((int)Progress.Instance.coins - 1);
+            SetCoins((int)Progress.Instance.coins - RANDOM_BALL_PRICE);
 
             float scHeight = skinsScrollRect.content.rect.height;
             float svHeight = skinsScrollRect.viewport.rect.height;
