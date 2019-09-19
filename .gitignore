@@ -39,3 +39,9 @@ sysinfo.txt
 
 # Keystores
 *.keystore
+
+# Sources
+*.psd
+*.psd.meta
+*.ai
+*.ai.meta
