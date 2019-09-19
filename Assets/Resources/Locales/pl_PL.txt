@@ -6,5 +6,6 @@ CONTINUE_TEXT=KONTYNUUJ
 CUSTOMIZE_TEXT=PERSONALIZUJ
 BUY_TEXT=KUP
 OWNED_TEXT=NABYTA
+RANDOM_TEXT=LOSUJ
 SHARE_WINDOW_TITLE_TEXT=Udostępnij swoim znajomym korzystając z:
 SHARE_MESSAGE_TEXT=Właśnie zdobyłem/am @score punktów w Swish Shot (https://play.google.com/store/apps/details?id=com.szaredko.basketball). Jesteś w stanie mnie pokonać? =)
