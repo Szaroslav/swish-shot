@@ -42,7 +42,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 9923d853e8b29e445bd164abc421e63c, type: 3}
-    totalSpriteSurfaceArea: 983040
+    totalSpriteSurfaceArea: 1048576
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -57,6 +57,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b996c86ab07ffd648a805dff9ce812b6, type: 3}
   - {fileID: 21300000, guid: 973a52fadc30504419174120a120529c, type: 3}
   - {fileID: 21300000, guid: 5790113bf3d0b364399f4393507fba0a, type: 3}
+  - {fileID: 21300000, guid: cdce841d35505394894564b8121ffe89, type: 3}
   - {fileID: 21300000, guid: 43b098ed09318c94f87ac448471703fb, type: 3}
   - {fileID: 21300000, guid: 047b40beaa2d5994994cbcf0a02709c4, type: 3}
   - {fileID: 21300000, guid: f62ecc6fc0be84740a96515d506c416f, type: 3}
@@ -73,6 +74,7 @@ SpriteAtlas:
   - baseball
   - basketball_yellow
   - basketball_white_green
+  - pixel_heart_ball
   - basketball_default
   - tennis
   - basketball_cyan

@@ -19,7 +19,11 @@ public class GPGS : MonoBehaviour
         if (!IsAuthenticated())
         {
             Game.Instance.Pause();
-            PlayGamesPlatform.Instance.Authenticate((success) => { Game.Instance.Resume(); });
+            PlayGamesPlatform.Instance.Authenticate((success) => 
+            {
+                Game.Instance.Resume();
+                Game.Instance.ui.screenUI.SetBool("signedIn", true);
+            });
         }
     }
 
