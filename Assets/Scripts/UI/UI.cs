@@ -3,11 +3,14 @@ using UnityEngine.UI;
 using UnityEngine.U2D;
 using TMPro;
 using System.Collections;
+using System.IO;
 
 public enum UIScene { Game, GameOver, Settings }
 
 public class UI : MonoBehaviour
 {
+    public RenderTexture screenshotTexture;
+
     [Header("Sprite atlases")]
     public SpriteAtlas uiAtlas;
 
@@ -49,7 +52,7 @@ public class UI : MonoBehaviour
 
     public void UpdateScores()
     {
-        score[0].text = score[1].text = Progress.Instance.score.ToString();
+        score[0].text = score[1].text = score[2].text = Progress.Instance.score.ToString();
         bestScore.text = Progress.Instance.bestScore.ToString();
         coins[0].text = Progress.Instance.GetCoinsText();
         coins[1].text = Progress.Instance.GetGameCoinsText();
@@ -106,21 +109,6 @@ public class UI : MonoBehaviour
     {
         //previousScene = currentScene;
         currentScene = scene;
-    }
-
-    public IEnumerator WaitForSceneAnimation(float duration, int sceneIndex)
-    {
-        yield return new WaitForSecondsRealtime(duration);
-        //SceneManager.LoadScene(sceneIndex);
-    }
-
-    public void Share()
-    {
-        string title = Localization.GetText("SHARE_WINDOW_TITLE_TEXT");
-        string text = Localization.GetText("SHARE_MESSAGE_TEXT");
-        text = text.Replace("@score", Progress.Instance.score.ToString());
-        //string screenshotPath = Utilities.TakeScreenshot();
-        new NativeShare().SetTitle(title).SetText(text).Share();
     }
 
     public void Leaderboard()

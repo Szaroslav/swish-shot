@@ -5,7 +5,7 @@ public enum InputPhase { Nothing, Began, Moved, Ended }
 
 public class TouchController : MonoBehaviour
 {
-    public const float MIN_SWIPE_MAGNITUDE  = 0.5f;
+    public const float MIN_SWIPE_MAGNITUDE  = 0.3f;
     public const float MAX_SWIPE_MAGNITUDE  = 1.25f;
     public const float MAX_BALL_Y           = 0.15f;
     public float BALL_GRAVITY               = 5.4f;
@@ -32,6 +32,12 @@ public class TouchController : MonoBehaviour
 
             if (phase != InputPhase.Nothing)
             {
+                if (touch && Input.touchCount > 1)
+                {
+                    ResetInput();
+                    return;
+                }
+
                 if (phase == InputPhase.Began)
                 {
                     ball.touched = DetectBall(currentPosition);

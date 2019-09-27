@@ -30,7 +30,6 @@ public class Ball : MonoBehaviour
     private Vector3 position;
 
     private Vector2 pp, cp;
-    private float speed = 15;
 
     protected void Awake()
     {
