@@ -37,12 +37,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-
-# Keystores
-*.keystore
-
-# Sources
-*.psd
-*.psd.meta
-*.ai
-*.ai.meta
