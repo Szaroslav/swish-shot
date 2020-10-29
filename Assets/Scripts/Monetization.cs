@@ -2,7 +2,7 @@
 using UnityEngine.Advertisements;
 using System.Collections;
 
-public class Monetization : MonoBehaviour, IUnityAdsListener
+public class Monetization : MonoBehaviour
 {
     #if UNITY_ANDROID
     private string gameId = "3237396";
@@ -24,7 +24,7 @@ public class Monetization : MonoBehaviour, IUnityAdsListener
 
     }
 
-    public void OnUnityAdsDidFinish(string placementId, ShowResult result)
+    /*public void OnUnityAdsDidFinish(string placementId, ShowResult result)
     {
         if (placementId == rewardedId)
         {
@@ -60,5 +60,5 @@ public class Monetization : MonoBehaviour, IUnityAdsListener
     {
         Advertisement.Show(rewardedId);
         Game.Instance.ui.OnContinue(true);
-    }
+    }*/
 }
