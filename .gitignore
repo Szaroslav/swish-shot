@@ -5,7 +5,8 @@
 [Bb]uilds/
 [Kk]eystore/
 [Kk]eystores/
-[Ss]tore
+[Ss]tore/
+[Aa]ssets/[Ss]ources/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory

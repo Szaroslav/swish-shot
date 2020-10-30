@@ -7763,7 +7763,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.65625
+  orthographic size: 3.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -25078,7 +25078,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 677633504}
-        m_MethodName: ShowRewardedAd
+        m_MethodName: ShowContinueAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

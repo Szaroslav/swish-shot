@@ -1,20 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.Advertisements;
 using System.Collections;
+using GoogleMobileAds.Api;
 
 public class Monetization : MonoBehaviour
 {
-    #if UNITY_ANDROID
-    private string gameId = "3237396";
-    #elif UNITY_IOS
-    private string gameId = "3237397";
-    #endif
-
     public bool testMode;
     public string bannerId;
     public string rewardedId;
 
-    public void OnUnityAdsReady(string placementId)
+    RewardedAd continueAd;
+
+    void Start()
+    {
+        string continueAdId;
+#if UNITY_ANDROID
+        continueAdId = "ca-app-pub-3940256099942544/5224354917";
+#elif UNITY_IOS
+        continueAdId = "ca-app-pub-3940256099942544/1712485313";
+#else
+        continueAdId = "unexpected_platform";
+#endif
+        MobileAds.Initialize(initStatus => { });
+
+        continueAd = new RewardedAd(continueAdId);
+        AdRequest req = new AdRequest.Builder().Build();
+        continueAd.LoadAd(req);
+    }
+
+    public void ShowContinueAd()
+    {
+        if (continueAd.IsLoaded())
+            continueAd.Show();
+    }
+
+    /*public void OnUnityAdsReady(string placementId)
     {
         
     }
@@ -24,7 +44,7 @@ public class Monetization : MonoBehaviour
 
     }
 
-    /*public void OnUnityAdsDidFinish(string placementId, ShowResult result)
+    public void OnUnityAdsDidFinish(string placementId, ShowResult result)
     {
         if (placementId == rewardedId)
         {

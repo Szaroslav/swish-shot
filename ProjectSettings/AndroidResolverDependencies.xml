@@ -55,7 +55,7 @@
     <file>Assets/Plugins/Android/com.google.games.gpgs-plugin-support-0.9.64.aar</file>
   </files>
   <settings>
-    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
+    <setting name="androidAbis" value="armeabi-v7a" />
     <setting name="bundleId" value="com.szaredko.basketball" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
