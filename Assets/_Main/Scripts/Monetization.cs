@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Advertisements;
 using System.Collections;
-//using GoogleMobileAds.Api;
+using GoogleMobileAds.Api;
 
 public class Monetization : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class Monetization : MonoBehaviour
     public string bannerId;
     public string rewardedId;
 
-    /*RewardedAd continueAd;
+    RewardedAd continueAd;
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class Monetization : MonoBehaviour
 #else
         continueAdId = "unexpected_platform";
 #endif
-        MobileAds.Initialize("ca-app-pub-5324115406353383~8923554787");
+        MobileAds.Initialize(initStatus => { });
 
         continueAd = new RewardedAd(continueAdId);
         AdRequest req = new AdRequest.Builder().Build();
