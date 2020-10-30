@@ -25,6 +25,18 @@
   if (self) {
     _rewardedAdClient = rewardedAdClient;
     _rewardedAd = [[GADRewardedAd alloc] initWithAdUnitID:adUnitID];
+
+    __weak GADURewardedAd *weakSelf = self;
+    _rewardedAd.paidEventHandler = ^void(GADAdValue *_Nonnull adValue) {
+      GADURewardedAd *strongSelf = weakSelf;
+      if (strongSelf.paidEventCallback) {
+        int64_t valueInMicros =
+            [adValue.value decimalNumberByMultiplyingByPowerOf10:6].longLongValue;
+        strongSelf.paidEventCallback(
+            strongSelf.rewardedAdClient, (int)adValue.precision, valueInMicros,
+            [adValue.currencyCode cStringUsingEncoding:NSUTF8StringEncoding]);
+      }
+    };
   }
   return self;
 }
@@ -34,9 +46,11 @@
              completionHandler:^(GADRequestError *_Nullable error) {
                if (error) {
                  if (self.adFailedToLoadCallback) {
+                   NSString *errorMsg =
+                       [NSString stringWithFormat:@"Failed to receive ad with error: %@",
+                                                  [error localizedDescription]];
                    self.adFailedToLoadCallback(
-                       self.rewardedAdClient,
-                       [[error localizedFailureReason] cStringUsingEncoding:NSUTF8StringEncoding]);
+                       self.rewardedAdClient, [errorMsg cStringUsingEncoding:NSUTF8StringEncoding]);
                  }
                } else {
                  if (self.adReceivedCallback) {
@@ -60,7 +74,11 @@
 }
 
 - (NSString *)mediationAdapterClassName {
-  return [self.rewardedAd adNetworkClassName];
+  return self.rewardedAd.responseInfo.adNetworkClassName;
+}
+
+- (GADResponseInfo *)responseInfo {
+  return self.rewardedAd.responseInfo;
 }
 
 - (void)rewardedAd:(nonnull GADRewardedAd *)rewardedAd
@@ -77,9 +95,10 @@
 - (void)rewardedAd:(nonnull GADRewardedAd *)rewardedAd
     didFailToPresentWithError:(nonnull NSError *)error {
   if (self.adFailedToShowCallback) {
-    self.adFailedToShowCallback(
-        self.rewardedAdClient,
-        [[error localizedFailureReason] cStringUsingEncoding:NSUTF8StringEncoding]);
+    NSString *errorMsg = [NSString
+        stringWithFormat:@"Failed to present ad with error: %@", [error localizedDescription]];
+    self.adFailedToShowCallback(self.rewardedAdClient,
+                                [errorMsg cStringUsingEncoding:NSUTF8StringEncoding]);
   }
 }
 

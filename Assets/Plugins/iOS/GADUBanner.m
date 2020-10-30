@@ -46,7 +46,8 @@
                                              adUnitID:(NSString *)adUnitID
                                            adPosition:(GADAdPosition)adPosition {
   // Choose the correct Smart Banner constant according to orientation.
-  UIDeviceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
+  UIInterfaceOrientation currentOrientation =
+      [UIApplication sharedApplication].statusBarOrientation;
   GADAdSize adSize;
   if (UIInterfaceOrientationIsPortrait(currentOrientation)) {
     adSize = kGADAdSizeSmartBannerPortrait;
@@ -63,7 +64,8 @@
                                              adUnitID:(NSString *)adUnitID
                                      customAdPosition:(CGPoint)customAdPosition {
   // Choose the correct Smart Banner constant according to orientation.
-  UIDeviceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
+  UIInterfaceOrientation currentOrientation =
+      [UIApplication sharedApplication].statusBarOrientation;
   GADAdSize adSize;
   if (UIInterfaceOrientationIsPortrait(currentOrientation)) {
     adSize = kGADAdSizeSmartBannerPortrait;
@@ -73,6 +75,30 @@
   return [self initWithBannerClientReference:bannerClient
                                     adUnitID:adUnitID
                                       adSize:adSize
+                            customAdPosition:customAdPosition];
+}
+
+- (id)initWithAdaptiveBannerSizeAndBannerClientReference:(GADUTypeBannerClientRef *)bannerClient
+                                                adUnitID:(NSString *)adUnitID
+                                                   width:(NSInteger)width
+                                             orientation:(GADUBannerOrientation)orientation
+                                              adPosition:(GADAdPosition)adPosition {
+  return [self initWithBannerClientReference:bannerClient
+                                    adUnitID:adUnitID
+                                      adSize:[GADUPluginUtil adaptiveAdSizeForWidth:(CGFloat)width
+                                                                        orientation:orientation]
+                                  adPosition:adPosition];
+}
+
+- (id)initWithAdaptiveBannerSizeAndBannerClientReference:(GADUTypeBannerClientRef *)bannerClient
+                                                adUnitID:(NSString *)adUnitID
+                                                   width:(NSInteger)width
+                                             orientation:(GADUBannerOrientation)orientation
+                                        customAdPosition:(CGPoint)customAdPosition {
+  return [self initWithBannerClientReference:bannerClient
+                                    adUnitID:adUnitID
+                                      adSize:[GADUPluginUtil adaptiveAdSizeForWidth:(CGFloat)width
+                                                                        orientation:orientation]
                             customAdPosition:customAdPosition];
 }
 
@@ -88,6 +114,8 @@
     _bannerView.adUnitID = adUnitID;
     _bannerView.delegate = self;
     _bannerView.rootViewController = [GADUPluginUtil unityGLViewController];
+
+    [self addPaidEventHandler];
   }
   return self;
 }
@@ -105,12 +133,27 @@
     _bannerView.adUnitID = adUnitID;
     _bannerView.delegate = self;
     _bannerView.rootViewController = [GADUPluginUtil unityGLViewController];
+
+    [self addPaidEventHandler];
   }
   return self;
 }
 
 - (void)dealloc {
   _bannerView.delegate = nil;
+}
+
+- (void)addPaidEventHandler {
+  __weak GADUBanner *weakSelf = self;
+  _bannerView.paidEventHandler = ^void(GADAdValue *_Nonnull adValue) {
+    GADUBanner *strongSelf = weakSelf;
+    if (strongSelf.paidEventCallback) {
+      int64_t valueInMicros = [adValue.value decimalNumberByMultiplyingByPowerOf10:6].longLongValue;
+      strongSelf.paidEventCallback(
+          strongSelf.bannerClient, (int)adValue.precision, valueInMicros,
+          [adValue.currencyCode cStringUsingEncoding:NSUTF8StringEncoding]);
+    }
+  };
 }
 
 - (void)loadRequest:(GADRequest *)request {
@@ -146,7 +189,11 @@
 }
 
 - (NSString *)mediationAdapterClassName {
-  return [self.bannerView adNetworkClassName];
+  return self.bannerView.responseInfo.adNetworkClassName;
+}
+
+- (GADResponseInfo *)responseInfo {
+  return self.bannerView.responseInfo;
 }
 
 - (CGFloat)heightInPixels {
@@ -205,7 +252,7 @@
 - (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error {
   if (self.adFailedCallback) {
     NSString *errorMsg = [NSString
-        stringWithFormat:@"Failed to receive ad with error: %@", [error localizedFailureReason]];
+        stringWithFormat:@"Failed to receive ad with error: %@", [error localizedDescription]];
     self.adFailedCallback(self.bannerClient, [errorMsg cStringUsingEncoding:NSUTF8StringEncoding]);
   }
 }

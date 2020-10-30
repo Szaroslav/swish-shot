@@ -35,6 +35,20 @@
                                              adUnitID:(NSString *)adUnitID
                                      customAdPosition:(CGPoint)customAdPosition;
 
+/// Initializes an adaptive GADUBanner, positioned at either the top or bottom of the screen.
+- (id)initWithAdaptiveBannerSizeAndBannerClientReference:(GADUTypeBannerClientRef *)bannerClient
+                                               adUnitID:(NSString *)adUnitID
+                                                  width:(NSInteger)width
+                                            orientation:(GADUBannerOrientation)orientation
+                                             adPosition:(GADAdPosition)adPosition;
+
+/// Initializes an adaptive GADUBanner with a custom position at given point from top left.
+- (id)initWithAdaptiveBannerSizeAndBannerClientReference:(GADUTypeBannerClientRef *)bannerClient
+                                                adUnitID:(NSString *)adUnitID
+                                                   width:(NSInteger)width
+                                             orientation:(GADUBannerOrientation)orientation
+                                        customAdPosition:(CGPoint)customAdPosition;
+
 /// A reference to the Unity banner client.
 @property(nonatomic, assign) GADUTypeBannerClientRef *bannerClient;
 
@@ -56,8 +70,14 @@
 /// The will leave application callback into Unity.
 @property(nonatomic, assign) GADUAdViewWillLeaveApplicationCallback willLeaveCallback;
 
+/// The paid event callback into Unity.
+@property(nonatomic, assign) GADUAdViewPaidEventCallback paidEventCallback;
+
 // Returns the mediation adapter class name.
 @property(nonatomic, readonly, copy) NSString *mediationAdapterClassName;
+
+// Returns the banner ad response info.
+@property(nonatomic, readonly, copy) GADResponseInfo *responseInfo;
 
 // Returns the height of the banner view in pixels.
 @property(nonatomic, readonly) CGFloat heightInPixels;

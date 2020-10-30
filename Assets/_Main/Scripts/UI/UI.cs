@@ -113,7 +113,7 @@ public class UI : MonoBehaviour
 
     public void Leaderboard()
     {
-        GPGS.ShowLeaderboard(GPGSIds.leaderboard_endless_mode);
+        //GPGS.ShowLeaderboard(GPGSIds.leaderboard_endless_mode);
     }
 
     public void Rate()

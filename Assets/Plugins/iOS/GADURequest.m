@@ -32,7 +32,8 @@
   components.month = month;
   components.day = day;
   components.year = year;
-  NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+  NSCalendar *gregorian =
+      [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
   self.birthday = [gregorian dateFromComponents:components];
 }
 
@@ -54,7 +55,7 @@
 }
 
 - (void)setMediationExtras:(id<GADAdNetworkExtras>)mediationExtras {
-  [self.mediationExtras addObject:mediationExtras];
+  [_mediationExtras addObject:mediationExtras];
 }
 
 - (GADRequest *)request {

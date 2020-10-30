@@ -4,12 +4,11 @@
 
 #import "UnityAppController.h"
 
-
 @interface UIView (unityStub)
 @property UILayoutGuide *safeAreaLayoutGuide;
 @end
 
-static BOOL IsOperatingSystemAtLeastVersion(NSInteger majorVersion) {
+BOOL GADUIsOperatingSystemAtLeastVersion(NSInteger majorVersion) {
   NSProcessInfo *processInfo = NSProcessInfo.processInfo;
   if ([processInfo respondsToSelector:@selector(isOperatingSystemAtLeastVersion:)]) {
     // iOS 8+.
@@ -21,9 +20,9 @@ static BOOL IsOperatingSystemAtLeastVersion(NSInteger majorVersion) {
   }
 }
 
-static CGFloat FullSafeWidthLandscape(void) {
+static CGFloat GADUSafeWidthLandscape(void) {
   CGRect screenBounds = [UIScreen mainScreen].bounds;
-  if (IsOperatingSystemAtLeastVersion(11)) {
+  if (GADUIsOperatingSystemAtLeastVersion(11)) {
     CGRect safeFrame = [UIApplication sharedApplication].keyWindow.safeAreaLayoutGuide.layoutFrame;
     if (!CGSizeEqualToSize(safeFrame.size, CGSizeZero)) {
       screenBounds = safeFrame;
@@ -49,10 +48,10 @@ static BOOL _pauseOnBackground = NO;
 }
 
 + (GADAdSize)safeAdSizeForAdSize:(GADAdSize)adSize {
-  if (IsOperatingSystemAtLeastVersion(11) &&
+  if (GADUIsOperatingSystemAtLeastVersion(11) &&
       GADAdSizeEqualToSize(kGADAdSizeSmartBannerLandscape, adSize)) {
     CGSize usualSize = CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape);
-    CGSize bannerSize = CGSizeMake(FullSafeWidthLandscape(), usualSize.height);
+    CGSize bannerSize = CGSizeMake(GADUSafeWidthLandscape(), usualSize.height);
     return GADAdSizeFromCGSize(bannerSize);
   } else {
     return adSize;
@@ -67,7 +66,7 @@ static BOOL _pauseOnBackground = NO;
         inParentView:(UIView *)parentView
           adPosition:(GADAdPosition)adPosition {
   CGRect parentBounds = parentView.bounds;
-  if (IsOperatingSystemAtLeastVersion(11)) {
+  if (GADUIsOperatingSystemAtLeastVersion(11)) {
     CGRect safeAreaFrame = parentView.safeAreaLayoutGuide.layoutFrame;
     if (!CGSizeEqualToSize(CGSizeZero, safeAreaFrame.size)) {
       parentBounds = safeAreaFrame;
@@ -127,7 +126,7 @@ static BOOL _pauseOnBackground = NO;
         inParentView:(UIView *)parentView
       customPosition:(CGPoint)adPosition {
   CGPoint origin = parentView.bounds.origin;
-  if (IsOperatingSystemAtLeastVersion(11)) {
+  if (GADUIsOperatingSystemAtLeastVersion(11)) {
     CGRect safeAreaFrame = parentView.safeAreaLayoutGuide.layoutFrame;
     if (!CGSizeEqualToSize(CGSizeZero, safeAreaFrame.size)) {
       origin = safeAreaFrame.origin;
@@ -140,15 +139,30 @@ static BOOL _pauseOnBackground = NO;
 }
 
 + (GADAdSize)adSizeForWidth:(CGFloat)width height:(CGFloat)height {
-  UIDeviceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
+  UIInterfaceOrientation currentOrientation =
+      [UIApplication sharedApplication].statusBarOrientation;
 
   if (width == kGADUAdSizeUseFullWidth && UIInterfaceOrientationIsPortrait(currentOrientation)) {
     return GADAdSizeFullWidthPortraitWithHeight(height);
   } else if ((width == kGADUAdSizeUseFullWidth &&
               UIInterfaceOrientationIsLandscape(currentOrientation))) {
-    return GADAdSizeFromCGSize(CGSizeMake(FullSafeWidthLandscape(), height));
+    return GADAdSizeFromCGSize(CGSizeMake(GADUSafeWidthLandscape(), height));
   }
   return GADAdSizeFromCGSize(CGSizeMake(width, height));
+}
+
++ (GADAdSize)adaptiveAdSizeForWidth:(CGFloat)width orientation:(GADUBannerOrientation)orientation {
+  if (width == kGADUAdSizeUseFullWidth) {
+    width = GADUDeviceSafeWidth();
+  }
+  switch (orientation) {
+    case kGADUBannerOrientationCurrent:
+      return GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(width);
+    case kGADUBannerOrientationLandscape:
+      return GADLandscapeAnchoredAdaptiveBannerAdSizeWithWidth(width);
+    case kGADUBannerOrientationPortrait:
+      return GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(width);
+  }
 }
 
 @end

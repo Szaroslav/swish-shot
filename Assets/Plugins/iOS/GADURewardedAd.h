@@ -37,8 +37,14 @@
 /// The user was rewarded callback into Unity.
 @property(nonatomic, assign) GADUUserEarnedRewardCallback didEarnRewardCallback;
 
+/// The paid event callback into Unity.
+@property(nonatomic, assign) GADURewardedAdPaidEventCallback paidEventCallback;
+
 // Returns the mediation adapter class name.
 @property(nonatomic, readonly, copy) NSString *mediationAdapterClassName;
+
+// Returns the rewarded ad response info.
+@property(nonatomic, readonly, copy) GADResponseInfo *responseInfo;
 
 /// Makes an ad request. Additional targeting options can be supplied with a request object.
 - (void)loadRequest:(GADRequest *)request;

@@ -1,5 +1,5 @@
-lastUpgrade=00964
-proj.pluginVersion=0.9.64
+lastUpgrade=01011
+proj.pluginVersion=0.10.11
 proj.AppId=1016324111894
 and.BundleId=com.szaredko.basketball
 proj.classDir=Assets
