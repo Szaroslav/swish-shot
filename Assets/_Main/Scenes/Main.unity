@@ -9091,9 +9091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb1f9e29731dee408a927ced8d08c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testMode: 0
-  bannerId: banner
-  rewardedId: rewardedVideo
+  testMode: 1
 --- !u!114 &677633507
 MonoBehaviour:
   m_ObjectHideFlags: 0

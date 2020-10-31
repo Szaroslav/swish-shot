@@ -19,13 +19,12 @@ public class TouchController : MonoBehaviour
     private bool touch = false;
     private Vector2 startPosition;
     private Vector3 ballPosition, shadowPosition, currentPosition, lastPosition;
-    private Vector3 gizmoStart, gizmoEnd;
 
     protected void Update()
     {
         if (!ball.moving && !Game.Instance.paused)
         {
-            touch = Input.touchCount > 0 ? true : false;
+            touch = Input.touchCount > 0;
             lastPosition = currentPosition;
             currentPosition = Camera.main.ScreenToWorldPoint(GetPosition());
             InputPhase phase = GetPhase(currentPosition, lastPosition);
@@ -78,12 +77,6 @@ public class TouchController : MonoBehaviour
         }
     }
 
-    /*protected void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(gizmoStart, gizmoEnd);
-    }*/
-
     protected void OnApplicationPause(bool pause)
     {
         if (pause && ball.touched)
@@ -105,6 +98,9 @@ public class TouchController : MonoBehaviour
             else if (Input.GetMouseButtonUp(0))
                 return InputPhase.Ended;
         #elif UNITY_ANDROID || UNITY_IOS
+            if (Input.touchCount == 0)
+                return InputPhase.Nothing;
+
             Touch t = Input.GetTouch(0);
 
             if (t.phase == TouchPhase.Began)
@@ -113,8 +109,8 @@ public class TouchController : MonoBehaviour
                 return InputPhase.Moved;
             else if (t.phase == TouchPhase.Ended)
                 return InputPhase.Ended;
-        #endif
-            return InputPhase.Nothing;
+#endif
+        return InputPhase.Nothing;
     }
 
     public void ResetInput()
@@ -139,8 +135,6 @@ public class TouchController : MonoBehaviour
         
         sd.Normalize();
         sd = ClampedVector2(sd, minSwipe, maxSwipe);
-        gizmoStart = new Vector3(startPosition.x, startPosition.y, -5);
-        gizmoEnd = new Vector3(ballPosition.x + sd.x * 10, ballPosition.y + sd.y * 10, -5);
         Vector2 d = AimAssist(ballPosition, sd);
         d = FixThrow(d);
         ball.Throw(d.normalized, f);
