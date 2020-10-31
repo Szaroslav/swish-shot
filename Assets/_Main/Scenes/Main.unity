@@ -232,7 +232,7 @@ MonoBehaviour:
   uiAtlas: {fileID: 4343727234628468602, guid: 21ac45c00cbace74d8c600289d325644, type: 2}
   worldUI: {fileID: 1631595116}
   screenUI: {fileID: 1506879893}
-  gameOver: {fileID: 1859932663}
+  gameOver: {fileID: 1859932664}
   settings: {fileID: 1754053064}
   score:
   - {fileID: 310550673}
@@ -9047,6 +9047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e276b113ea1a22c4caa27b8e9cbdece8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monetization: {fileID: 677633504}
   ui: {fileID: 9988705}
   ball: {fileID: 659429513}
   hoop: {fileID: 2030270336}
@@ -25049,7 +25050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -56.920044}
+  m_AnchoredPosition: {x: 0, y: -57}
   m_SizeDelta: {x: 600, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1936729009

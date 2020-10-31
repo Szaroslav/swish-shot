@@ -31,6 +31,7 @@ public class Game : MonoBehaviour
     [NonSerialized]
     public int stage = 0;
 
+    public Monetization monetization;
     public UI ui;
     public Ball ball;
     public Hoop hoop;

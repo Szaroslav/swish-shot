@@ -1,8 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class UIContinueButton : MonoBehaviour
 {
     private float time = 0;
+
+    private RectTransform rt;
+    private Button btn;
+    private Image img;
+
+    private Color defaultColor;
+
+    private void Start()
+    {
+        rt = GetComponent<RectTransform>();
+        btn = GetComponent<Button>();
+        img = GetComponent<Image>();
+
+        defaultColor = img.color;
+    }
 
     private void Update()
     {
@@ -10,13 +26,35 @@ public class UIContinueButton : MonoBehaviour
 
         if (time >= 1)
         {
-            AnimatorStateInfo s = Game.Instance.ui.gameOver.animator.GetCurrentAnimatorStateInfo(1);
-            if (s.IsName("On") && (Game.Instance.continued || Application.internetReachability == NetworkReachability.NotReachable))
-                Game.Instance.ui.gameOver.animator.Play("Off", 1);
-            else if (s.IsName("Off") && !Game.Instance.continued && Application.internetReachability != NetworkReachability.NotReachable)
-                Game.Instance.ui.gameOver.animator.Play("On", 1);
+            if (Game.Instance.continued || !Game.Instance.monetization.IsContinueAdLoaded())
+                TurnButtonOff();
+            else if (!LeanTween.isTweening(gameObject) && !Game.Instance.continued && Game.Instance.monetization.IsContinueAdLoaded())
+                TurnButtonOn();
 
             time = 0;
         }
+    }
+
+    private void TurnButtonOn()
+    {
+        btn.interactable = true;
+
+        LeanTween.scale(rt, Vector3.one * 1.05f, 0.75f)
+            .setLoopPingPong()
+            .setIgnoreTimeScale(true);
+        LeanTween.value(gameObject, c => {
+            img.color = c;
+        }, defaultColor, new Color(1, 0.337f, 0.345f), 0.75f)
+            .setLoopPingPong()
+            .setIgnoreTimeScale(true);
+    }
+
+    private void TurnButtonOff()
+    {
+        LeanTween.cancelAll(gameObject);
+
+        rt.localScale = Vector3.one;
+        btn.interactable = false;
+        img.color = new Color(0.1f, 0.1f, 0.1f);
     }
 }
