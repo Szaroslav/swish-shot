@@ -61,12 +61,12 @@ public class UI : MonoBehaviour
     public void GameOver()
     {
         ChangeCurrentScene(UIScene.GameOver);
-        gameOver.animator.SetBool("gameOver", true);
+        gameOver.In();
     }
 
     public void OnContinue(bool i)
     {
-        gameOver.animator.SetBool("continue", i);
+        //gameOver.animator.SetBool("continue", i);
     }
 
     public void Continue()
@@ -75,16 +75,14 @@ public class UI : MonoBehaviour
         Game.Instance.Resume();
         Game.Instance.UpdateGame();
         worldUI.Play("Score in");
-        gameOver.animator.SetBool("gameOver", false);
-
-        GameOverOut();
+        gameOver.Out();
     }
 
     public void PlayAgain()
     {
         ChangeCurrentScene(UIScene.Game);
         worldUI.Play("Score in");
-        gameOver.animator.SetBool("gameOver", false);
+        gameOver.Out();
         StartCoroutine(Game.Instance.ResetGame());
     }
 
@@ -121,15 +119,5 @@ public class UI : MonoBehaviour
     public void Rate()
     {
         Application.OpenURL("https://play.google.com/store/apps/details?id=com.szaredko.basketball");
-    }
-
-    void GameOverIn()
-    {
-
-    }
-
-    void GameOverOut()
-    {
-
     }
 }

@@ -23813,7 +23813,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1859932661}
   - component: {fileID: 1859932662}
-  - component: {fileID: 1859932663}
   - component: {fileID: 1859932664}
   m_Layer: 5
   m_Name: Game over
@@ -23855,25 +23854,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!95 &1859932663
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859932660}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 37a999872b2dc8041b7b9fa48482edbc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1859932664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23887,12 +23867,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1859932662}
-  animator: {fileID: 1859932663}
-  shareBtn: {fileID: 1457234434}
-  leaderboardBtn: {fileID: 888728302}
-  rateBtn: {fileID: 1524593594}
-  continueBtn: {fileID: 1936729009}
-  playAgainBtn: {fileID: 1463183382}
+  shareBtn: {fileID: 1457234433}
+  leaderboardBtn: {fileID: 888728301}
+  rateBtn: {fileID: 1524593593}
+  continueBtn: {fileID: 1936729008}
+  playAgainBtn: {fileID: 1463183381}
+  buttonsEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -1.9959887
+      outSlope: -1.9959887
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.24897951
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1875400431
 GameObject:
   m_ObjectHideFlags: 0
