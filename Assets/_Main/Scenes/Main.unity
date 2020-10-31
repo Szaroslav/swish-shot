@@ -23813,6 +23813,7 @@ GameObject:
   - component: {fileID: 1859932661}
   - component: {fileID: 1859932662}
   - component: {fileID: 1859932663}
+  - component: {fileID: 1859932664}
   m_Layer: 5
   m_Name: Game over
   m_TagString: Untagged
@@ -23872,6 +23873,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1859932664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859932660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307729ba662485b47bd6e5c1e70967f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1859932662}
+  animator: {fileID: 1859932663}
+  shareBtn: {fileID: 1457234434}
+  leaderboardBtn: {fileID: 888728302}
+  rateBtn: {fileID: 1524593594}
+  continueBtn: {fileID: 1936729009}
+  playAgainBtn: {fileID: 1463183382}
 --- !u!1 &1875400431
 GameObject:
   m_ObjectHideFlags: 0

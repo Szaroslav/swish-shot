@@ -10,11 +10,11 @@ public class UIContinueButton : MonoBehaviour
 
         if (time >= 1)
         {
-            AnimatorStateInfo s = Game.Instance.ui.gameOver.GetCurrentAnimatorStateInfo(1);
+            AnimatorStateInfo s = Game.Instance.ui.gameOver.animator.GetCurrentAnimatorStateInfo(1);
             if (s.IsName("On") && (Game.Instance.continued || Application.internetReachability == NetworkReachability.NotReachable))
-                Game.Instance.ui.gameOver.Play("Off", 1);
+                Game.Instance.ui.gameOver.animator.Play("Off", 1);
             else if (s.IsName("Off") && !Game.Instance.continued && Application.internetReachability != NetworkReachability.NotReachable)
-                Game.Instance.ui.gameOver.Play("On", 1);
+                Game.Instance.ui.gameOver.animator.Play("On", 1);
 
             time = 0;
         }

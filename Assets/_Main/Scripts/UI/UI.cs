@@ -17,7 +17,7 @@ public class UI : MonoBehaviour
     [Header("Animators")]
     public Animator worldUI;
     public Animator screenUI;
-    public Animator gameOver;
+    public UIGameOver gameOver; ///////////
     public Animator settings;
 
     [Header("Texts")]
@@ -61,12 +61,12 @@ public class UI : MonoBehaviour
     public void GameOver()
     {
         ChangeCurrentScene(UIScene.GameOver);
-        gameOver.SetBool("gameOver", true);
+        gameOver.animator.SetBool("gameOver", true);
     }
 
     public void OnContinue(bool i)
     {
-        gameOver.SetBool("continue", i);
+        gameOver.animator.SetBool("continue", i);
     }
 
     public void Continue()
@@ -75,14 +75,16 @@ public class UI : MonoBehaviour
         Game.Instance.Resume();
         Game.Instance.UpdateGame();
         worldUI.Play("Score in");
-        gameOver.SetBool("gameOver", false);
+        gameOver.animator.SetBool("gameOver", false);
+
+        GameOverOut();
     }
 
     public void PlayAgain()
     {
         ChangeCurrentScene(UIScene.Game);
         worldUI.Play("Score in");
-        gameOver.SetBool("gameOver", false);
+        gameOver.animator.SetBool("gameOver", false);
         StartCoroutine(Game.Instance.ResetGame());
     }
 
@@ -113,11 +115,21 @@ public class UI : MonoBehaviour
 
     public void Leaderboard()
     {
-        //GPGS.ShowLeaderboard(GPGSIds.leaderboard_endless_mode);
+        GPGS.ShowLeaderboard(GPGSIds.leaderboard_endless_mode);
     }
 
     public void Rate()
     {
         Application.OpenURL("https://play.google.com/store/apps/details?id=com.szaredko.basketball");
+    }
+
+    void GameOverIn()
+    {
+
+    }
+
+    void GameOverOut()
+    {
+
     }
 }
