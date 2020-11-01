@@ -18,11 +18,12 @@ public class UIGameOver : MonoBehaviour
 
     public void In()
     {
-        LeanTween.cancelAll(continueBtn.gameObject);
+        LeanTween.cancel(continueBtn.gameObject);
         shareBtn.localScale = leaderboardBtn.localScale = rateBtn.localScale = continueBtn.localScale = playAgainBtn.localScale = Vector3.zero;
 
         UIContinueButton uicb = continueBtn.GetComponent<UIContinueButton>();
-        uicb.GetComponent<Image>().color = uicb.defaultColor;
+        Button btn = uicb.GetComponent<Button>();
+        uicb.GetComponent<Image>().color = btn.interactable ? uicb.defaultColor : uicb.disabledColor;
 
         LeanTween.value(gameObject, v => { canvasGroup.alpha = v; }, 0, 1, 0.33f)
             .setEaseInCubic()
@@ -46,12 +47,11 @@ public class UIGameOver : MonoBehaviour
 
     public void Out()
     {
+        canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
+
         LeanTween.value(gameObject, v => { canvasGroup.alpha = v; }, 1, 0, 0.33f)
             .setEaseInCubic()
-            .setIgnoreTimeScale(true)
-            .setOnComplete(() => {
-                canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
-            });
+            .setIgnoreTimeScale(true);
     }
 
     void ScaleButton(RectTransform rt, float t, float d, bool useButtonsEase = true)
@@ -61,7 +61,7 @@ public class UIGameOver : MonoBehaviour
             .setDelay(d);
 
         if (useButtonsEase)
-            ltd.setEase(buttonsEase);
+            ltd.setEase(LeanTweenType.easeOutCubic);
         else
             ltd.setEase(LeanTweenType.easeInOutCubic);
     }

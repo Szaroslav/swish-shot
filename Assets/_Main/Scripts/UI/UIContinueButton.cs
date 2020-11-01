@@ -6,6 +6,8 @@ public class UIContinueButton : MonoBehaviour
 {
     [NonSerialized]
     public Color defaultColor;
+    [NonSerialized]
+    public Color disabledColor = new Color(0.6f, 0.6f, 0.6f);
 
     private float time = 0;
 
@@ -35,7 +37,7 @@ public class UIContinueButton : MonoBehaviour
 
     public void VerifyState()
     {
-        if (Game.Instance.continued || !Game.Instance.monetization.IsContinueAdLoaded())
+        if ((Game.Instance.continued || !Game.Instance.monetization.IsContinueAdLoaded()) && btn.interactable)
             TurnButtonOff();
         else if (!LeanTween.isTweening(gameObject) && !Game.Instance.continued && Game.Instance.monetization.IsContinueAdLoaded())
             TurnButtonOn();
@@ -58,10 +60,10 @@ public class UIContinueButton : MonoBehaviour
 
     private void TurnButtonOff()
     {
-        LeanTween.cancelAll(gameObject);
+        LeanTween.cancel(gameObject);
 
         rt.localScale = Vector3.one;
         btn.interactable = false;
-        img.color = new Color(0.6f, 0.6f, 0.6f);
+        img.color = disabledColor;
     }
 }
