@@ -5,7 +5,6 @@ public class UIGameOver : MonoBehaviour
 {
     [Header("Components")]
     public CanvasGroup canvasGroup;
-    //public Animator animator;
 
     [Header("Buttons")]
     public RectTransform shareBtn;
@@ -22,17 +21,26 @@ public class UIGameOver : MonoBehaviour
         LeanTween.cancelAll(continueBtn.gameObject);
         shareBtn.localScale = leaderboardBtn.localScale = rateBtn.localScale = continueBtn.localScale = playAgainBtn.localScale = Vector3.zero;
 
+        UIContinueButton uicb = continueBtn.GetComponent<UIContinueButton>();
+        uicb.GetComponent<Image>().color = uicb.defaultColor;
+
         LeanTween.value(gameObject, v => { canvasGroup.alpha = v; }, 0, 1, 0.33f)
             .setEaseInCubic()
             .setIgnoreTimeScale(true)
             .setOnComplete(() => {
                 canvasGroup.interactable = canvasGroup.blocksRaycasts = true;
             });
+        LeanTween.scale(continueBtn, Vector3.one, 0.3f)
+            .setEase(LeanTweenType.easeInOutCubic)
+            .setIgnoreTimeScale(true)
+            .setDelay(0.33f)
+            .setOnComplete(() => {
+                uicb.VerifyState();
+            });
 
         ScaleButton(shareBtn, 0.3f, 0.33f);
         ScaleButton(leaderboardBtn, 0.3f, 0.43f);
         ScaleButton(rateBtn, 0.3f, 0.53f);
-        ScaleButton(continueBtn, 0.3f, 0.33f, false);
         ScaleButton(playAgainBtn, 0.3f, 0.5f, false);
     }
 

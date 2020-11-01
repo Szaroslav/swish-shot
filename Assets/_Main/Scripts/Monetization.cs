@@ -23,28 +23,20 @@ public class Monetization : MonoBehaviour
 
         MobileAds.Initialize(initStatus => { });
 
-        continueAd = CreateRewardedAd(continueAdId, "continueAd");
+        continueAd = CreateRewardedAd(continueAdId);
     }
 
-    void Update()
+    RewardedAd CreateRewardedAd(string adId)
     {
-        /*time += Time.unscaledDeltaTime;
+        string adName = "";
+        if (adId == continueAdId)
+            adName = "Continue AD";
 
-        if (time < 5)
-            return;
-        
-        if (!IsContinueAdLoaded())
-            continueAd = CreateRewardedAd(continueAdId, "continueAd");
-
-        time = 0;*/
-    }
-
-    RewardedAd CreateRewardedAd(string adId, string adName)
-    {
         RewardedAd ad = new RewardedAd(adId);
-        
-        ad.OnUserEarnedReward +=    (sender, args) => HandleAdReward(sender, args, adName);
-        ad.OnAdClosed +=            (sender, args) => HandleAdClosed(sender, args, adId, adName);
+
+        ad.OnAdOpening +=           (sender, args) => HandleAdOpening(sender, args);
+        ad.OnUserEarnedReward +=    (sender, args) => HandleAdReward(sender, args);
+        ad.OnAdClosed +=            (sender, args) => HandleAdClosed(sender, args, adId);
         ad.OnAdFailedToLoad +=      (sender, args) => HandleAdFailedToLoad(sender, args, adId, adName);
         ad.OnAdFailedToShow +=      (sender, args) => HandleAdFailedToShow(sender, args, adName);
 
@@ -57,10 +49,7 @@ public class Monetization : MonoBehaviour
     public void ShowContinueAd()
     {
         if (IsContinueAdLoaded())
-        {
-            Game.Instance.ui.OnContinue(true);
             continueAd.Show();
-        }       
     }
 
     public bool IsContinueAdLoaded()
@@ -68,16 +57,21 @@ public class Monetization : MonoBehaviour
         return continueAd.IsLoaded();
     }
 
-    void HandleAdReward(object sender, Reward args, string adName)
+    void HandleAdOpening(object sender, EventArgs args)
+    {
+        Game.Instance.ui.OnContinue(true);
+    }
+
+    void HandleAdReward(object sender, Reward args)
     {
         Game.Instance.continued = true;
         //Game.Instance.ui.OnContinue(false);
         Game.Instance.ui.Continue();
     }
 
-    void HandleAdClosed(object sender, EventArgs args, string adId, string adName)
+    void HandleAdClosed(object sender, EventArgs args, string adId)
     {
-        continueAd = CreateRewardedAd(adId, adName);
+        continueAd = CreateRewardedAd(adId);
         //Game.Instance.ui.Continue();
     }
 
@@ -85,7 +79,7 @@ public class Monetization : MonoBehaviour
     {
         Debug.LogError($"{adName} failed to load with message: {args.Message}");
 
-        continueAd = CreateRewardedAd(adId, adName);
+        continueAd = CreateRewardedAd(adId);
     }
 
     void HandleAdFailedToShow(object sender, AdErrorEventArgs args, string adName)
