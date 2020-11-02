@@ -7,19 +7,13 @@ E-mail: yasirkula@gmail.com
 This plugin helps you natively share files (images, videos, documents, etc.) and/or plain text on Android & iOS. A ContentProvider is used to share the media on Android.
 
 2. HOW TO
-for Android: using a ContentProvider requires a small modification in AndroidManifest. If your project does not have an AndroidManifest.xml file located at Assets/Plugins/Android, you should copy Unity's default AndroidManifest.xml from C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer (it might be located in a subfolder, like 'Apk') to Assets/Plugins/Android. Inside the <application>...</application> tag of your AndroidManifest, insert the following code snippet:
+2.1. Android Setup
+NativeShare no longer requires any manual setup on Android. If you were using an older version of the plugin, you need to remove NativeShare's "<provider ... />" from your AndroidManifest.xml.
 
-<provider
-  android:name="com.yasirkula.unity.UnitySSContentProvider"
-  android:authorities="MY_UNIQUE_AUTHORITY"
-  android:exported="false"
-  android:grantUriPermissions="true" />
+For reference, the legacy documentation is available at: https://github.com/yasirkula/UnityNativeShare/wiki/Manual-Setup-for-Android
 
-Here, you should change MY_UNIQUE_AUTHORITY with a unique string. That is important because two apps with the same android:authorities string in their <provider> tag can't be installed on the same device. Just make it something unique, like your bundle identifier, if you like.
-
-NOTE: if you are also using the NativeCamera plugin, make sure that each plugin's provider has a different android:authorities string.
-
-for iOS: there are two ways to set up the plugin on iOS:
+2.2. iOS Setup
+There are two ways to set up the plugin on iOS:
 
 a. Automated Setup for iOS
 - change the value of PHOTO_LIBRARY_USAGE_DESCRIPTION in Plugins/NativeShare/Editor/NSPostProcessBuild.cs (optional)
@@ -31,17 +25,17 @@ b. Manual Setup for iOS
 - also enter a Photo Library Additions Usage Description to Info.plist in Xcode, if exists
 
 3. FAQ
+- Can I share on a specific app?
+On Android, you can share on a specific app via AddTarget. For iOS, you can check out this post and see if it works for you: https://forum.unity.com/threads/native-share-for-android-ios-open-source.519865/page-4#post-4011874
+
 - I can't share image with text on X app
 It is just not possible to share an image/file with text/subject on some apps (e.g. Facebook), they intentionally omit either the image or the text from the shared content. These apps require you to use their own SDKs for complex share actions. For best compatibility, I'd recommend you to share either only image or only text.
 
 - Can't share, it says "Can't file ContentProvider, share not possible!" in Logcat
-Make sure that you've added the provider to the AndroidManifest.xml located exactly at Assets/Plugins/Android and verify that it is inserted in-between the <application>...</application> tags.
+After building your project, verify that NativeShare's "<provider ... />" tag is inserted in-between the "<application>...</application>" tags of PROJECT_PATH/Temp/StagingArea/AndroidManifest.xml. If not, please contact me.
 
 - Can't share, it says "java.lang.ClassNotFoundException: com.yasirkula.unity.NativeShare" in Logcat
 If your project uses ProGuard, try adding the following line to ProGuard filters: -keep class com.yasirkula.unity.* { *; }
-
-- My app crashes at startup after importing NativeShare to my project
-Make sure that you didn't touch the provider's android:name value, it must stay as is. You only need to change the android:authorities string.
 
 4. SCRIPTING API
 Simply create a new NativeShare object and customize it by chaining the following functions as you like:
@@ -49,10 +43,17 @@ Simply create a new NativeShare object and customize it by chaining the followin
 - SetSubject( string subject ): sets the subject (primarily used in e-mail applications)
 - SetText( string text ): sets the shared text. Note that the Facebook app will omit text, if exists
 - AddFile( string filePath, string mime = null ): adds the file at path to the share action. You can add multiple files of different types. The MIME of the file is automatically determined if left null; however, if the file doesn't have an extension and/or you already know the MIME of the file, you can enter the MIME manually. MIME has no effect on iOS
+- AddFile( Texture2D texture, string createdFileName = "Image.png" ): saves the texture to Application.temporaryCachePath with the specified filename and adds the image file to the share action
 - SetTitle( string title ): sets the title of the share dialog on Android platform. Has no effect on iOS
-- SetTarget( string androidPackageName, string androidClassName = null ): shares content on a specific application on Android platform. If androidClassName is left null, list of activities in the share dialog will be narrowed down to the activities in the specified androidPackageName that can handle this share action (if there is only one such activity, it will be launched directly). Note that androidClassName, if provided, must be the full name of the activity (with its package). This function has no effect on iOS
+- AddTarget( string androidPackageName, string androidClassName = null ): shares content on a specific application on Android platform. If androidClassName is left null, list of activities in the share dialog will be narrowed down to the activities in the specified androidPackageName that can handle this share action. Note that androidClassName, if provided, must be the full name of the activity (with its package). You can call this function multiple times. This function has no effect on iOS
+- SetCallback( ShareResultCallback callback ): invokes the callback function after the share action is completed. ShareResultCallback has the following signature: void ShareResultCallback( ShareResult result, string shareTarget )
+  - "ShareResult result" can take 3 values:
+    - Unknown: we can't determine whether or not the user has shared the content
+	- Shared: user has probably shared the content. This value guarantees that the user has at least selected an app from the share sheet. But it is impossible to say whether the user has actually shared the content or cancelled the operation right after selecting the app from the share sheet
+	- NotShared: either the user has closed the share sheet immediately or selected an app from the share sheet but then decided not to share the content (unfortunately, most apps return Shared for the latter case)
+  - "string shareTarget" stores information about the app that the user has selected from the share sheet. It can be null or empty, if this information isn't provided. Usually, this is the package name/class name of the selected application. You can use this value to e.g. determine if the user has picked Twitter from the share sheet: shareTarget != null && shareTarget.ToLowerInvariant().Contains( "twitter" )
 
-Finally, calling the Share() function of the NativeShare object will do the trick!
+Finally, calling the Share() function of the NativeShare object will present the share sheet.
 
 5. KNOWN LIMITATIONS
-- Gif files are shared as static images on iOS
+- Gif files are shared as static images on iOS (to learn more, please see this issue: https://github.com/yasirkula/UnityNativeShare/issues/22)

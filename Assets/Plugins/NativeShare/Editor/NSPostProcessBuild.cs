@@ -1,14 +1,26 @@
-﻿#if UNITY_IOS
+﻿using System.IO;
 using UnityEditor;
+using UnityEngine;
+#if UNITY_IOS
 using UnityEditor.Callbacks;
-using System.IO;
 using UnityEditor.iOS.Xcode;
 #endif
 
 public class NSPostProcessBuild 
 {
 	private const bool ENABLED = true;
-	private const string PHOTO_LIBRARY_USAGE_DESCRIPTION = "Save media to Photos";
+	private const string PHOTO_LIBRARY_USAGE_DESCRIPTION = "The app requires access to Photos to save media to it.";
+
+	[InitializeOnLoadMethod]
+	public static void ValidatePlugin()
+	{
+		string jarPath = "Assets/Plugins/NativeShare/Android/NativeShare.jar";
+		if( File.Exists( jarPath ) )
+		{
+			Debug.Log( "Deleting obsolete " + jarPath );
+			AssetDatabase.DeleteAsset( jarPath );
+		}
+	}
 
 #if UNITY_IOS
 #pragma warning disable 0162
