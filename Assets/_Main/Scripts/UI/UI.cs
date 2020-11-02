@@ -64,11 +64,6 @@ public class UI : MonoBehaviour
         gameOver.In();
     }
 
-    public void OnContinue(bool i)
-    {
-        //gameOver.animator.SetBool("continue", i);
-    }
-
     public void Continue()
     {
         ChangeCurrentScene(UIScene.Game);

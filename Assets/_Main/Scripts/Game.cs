@@ -80,8 +80,9 @@ public class Game : MonoBehaviour
         UpdateGame();
 
         yield return new WaitForSecondsRealtime(AnimationDurations.GAME_OVER_OUT);
-        
+
         ui.UpdateScores();
+        ui.gameOver.uicb.VerifyState();
         ball.animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         
         yield return new WaitForSecondsRealtime(AnimationDurations.RESET_SCORE);

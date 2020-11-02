@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using GoogleMobileAds.Api;
 using System;
+using System.Collections;
 
 public class Monetization : MonoBehaviour
 {
     public bool testMode;
 
-    float time = 0;
+    bool earnReward = false;
     string continueAdId;
 
     RewardedAd continueAd;
@@ -24,6 +25,17 @@ public class Monetization : MonoBehaviour
         MobileAds.Initialize(initStatus => { });
 
         continueAd = CreateRewardedAd(continueAdId);
+    }
+
+    void Update()
+    {
+        if (earnReward)
+        {
+            Game.Instance.continued = true;
+            Game.Instance.ui.Continue();
+
+            earnReward = false;
+        }
     }
 
     RewardedAd CreateRewardedAd(string adId)
@@ -59,20 +71,17 @@ public class Monetization : MonoBehaviour
 
     void HandleAdOpening(object sender, EventArgs args)
     {
-        Game.Instance.ui.OnContinue(true);
+        Game.Instance.ui.gameOver.uicb.VerifyState();
     }
 
     void HandleAdReward(object sender, Reward args)
     {
-        Game.Instance.continued = true;
-        //Game.Instance.ui.OnContinue(false);
-        Game.Instance.ui.Continue();
+        earnReward = true;
     }
 
     void HandleAdClosed(object sender, EventArgs args, string adId)
     {
         continueAd = CreateRewardedAd(adId);
-        //Game.Instance.ui.Continue();
     }
 
     void HandleAdFailedToLoad(object sender, AdErrorEventArgs args, string adId, string adName)

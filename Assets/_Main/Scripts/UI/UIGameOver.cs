@@ -7,6 +7,7 @@ public class UIGameOver : MonoBehaviour
     public CanvasGroup canvasGroup;
 
     [Header("Buttons")]
+    public UIContinueButton uicb;
     public RectTransform shareBtn;
     public RectTransform leaderboardBtn;
     public RectTransform rateBtn;
@@ -48,7 +49,7 @@ public class UIGameOver : MonoBehaviour
     public void Out()
     {
         canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
-
+        
         LeanTween.value(gameObject, v => { canvasGroup.alpha = v; }, 1, 0, 0.33f)
             .setEaseInCubic()
             .setIgnoreTimeScale(true);

@@ -5,7 +5,7 @@
     // Score reset time to default size and alpha (WorldInGameOver)
     public const float RESET_SCORE = 15f / 60f;
     // Game over screen fade out animation time
-    public const float GAME_OVER_OUT = 10f / 60f;
+    public const float GAME_OVER_OUT = 20f / 60f;
     // White background in and out durations
     public const float WHITE_BG = 10f / 60f;
 }

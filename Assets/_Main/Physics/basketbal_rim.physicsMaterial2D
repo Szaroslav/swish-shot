@@ -7,5 +7,5 @@ PhysicsMaterial2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: basketbal_rim
-  friction: 0
-  bounciness: 0.6
+  friction: 0.3
+  bounciness: 0.4

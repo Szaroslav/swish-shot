@@ -43,7 +43,7 @@ public class UIContinueButton : MonoBehaviour
             TurnButtonOn();
     }
 
-    private void TurnButtonOn()
+    public void TurnButtonOn()
     {
         btn.interactable = true;
 
@@ -58,7 +58,7 @@ public class UIContinueButton : MonoBehaviour
             .setIgnoreTimeScale(true);
     }
 
-    private void TurnButtonOff()
+    public void TurnButtonOff()
     {
         LeanTween.cancel(gameObject);
 

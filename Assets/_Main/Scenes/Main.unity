@@ -23867,6 +23867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1859932662}
+  uicb: {fileID: 1936729012}
   shareBtn: {fileID: 1457234433}
   leaderboardBtn: {fileID: 888728301}
   rateBtn: {fileID: 1524593593}
