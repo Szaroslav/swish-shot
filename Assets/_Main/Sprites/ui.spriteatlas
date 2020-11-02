@@ -43,7 +43,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: 35c822f5a220f684386dbc933e69b7d5, type: 3}
     - {fileID: 102900000, guid: 74e2ee443146b974bacf651a32907e45, type: 3}
-    totalSpriteSurfaceArea: 637840
+    totalSpriteSurfaceArea: 921400
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -52,7 +52,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 94e16d014bd70fd4eadfe0e89dfffd56, type: 3}
   - {fileID: 21300000, guid: 713788d2630aaab4896c44536c5f761f, type: 3}
   - {fileID: 21300000, guid: 47f415e280a9f51438e4f7f04593ebd5, type: 3}
-  - {fileID: 21300000, guid: 9e23bd8658c3e1d49aa05c9a3399143b, type: 3}
+  - {fileID: 21300000, guid: 997352435df081a4283ea57060dc7a5f, type: 3}
+  - {fileID: 21300000, guid: a68836073ae046c4c959bb65784719ba, type: 3}
   - {fileID: 21300000, guid: 5ec6b677d6cfdbd4f8ad856ae662af81, type: 3}
   - {fileID: 21300000, guid: cda704387a5d7a542a84d3099382ddc9, type: 3}
   - {fileID: 21300000, guid: 1657ea98906f85f44b68aa9fc6c887c3, type: 3}
@@ -78,7 +79,8 @@ SpriteAtlas:
   - square-gradient
   - ring
   - settings
-  - rounded-square-border
+  - red-purple-gradient
+  - fully-rounded-rectangle
   - rate
   - rounded-square
   - leaderboard
