@@ -57,6 +57,11 @@ public class Hoop : MonoBehaviour
         rb.velocity = (UnityEngine.Random.Range(0, 2) == 0 ? Vector2.left : Vector2.right) * MOVING_SPEED;
     }
 
+    public void IncreaseSpeed(float v)
+    {
+        rb.velocity += new Vector2(rb.velocity.x >= 0 ? v : -v, 0);
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -66,7 +71,7 @@ public class Hoop : MonoBehaviour
     {
         if (collision.name == "Hoop border")
         {
-            rb.velocity = (rb.velocity.x > 0 ? Vector2.left : Vector2.right) * MOVING_SPEED;
+            rb.velocity *= -1;
         }
     }
 }

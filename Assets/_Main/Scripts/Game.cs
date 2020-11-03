@@ -71,6 +71,10 @@ public class Game : MonoBehaviour
             stage = 2;
             Progress.Instance.SetCoins(3);
         }
+        else if (stage == 2)
+        {
+            hoop.IncreaseSpeed(0.05f);
+        }
     }
 
     public IEnumerator ResetGame()
