@@ -50,7 +50,7 @@ public class UIGameOver : MonoBehaviour
     {
         canvasGroup.interactable = canvasGroup.blocksRaycasts = false;
         
-        LeanTween.value(gameObject, v => { canvasGroup.alpha = v; }, 1, 0, 0.33f)
+        LeanTween.value(gameObject, v => { canvasGroup.alpha = v; }, 1, 0, AnimationDurations.GAME_OVER_OUT)
             .setEaseInCubic()
             .setIgnoreTimeScale(true);
     }

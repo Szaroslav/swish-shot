@@ -53,7 +53,7 @@ public class UIContinueButton : MonoBehaviour
             .setIgnoreTimeScale(true);
         LeanTween.value(gameObject, c => {
             img.color = c;
-        }, defaultColor, new Color(1, 0.776f, 0.243f), 1.5f)
+        }, defaultColor, new Color(0.704f, 0.204f, 0.886f), 1.5f)
             .setLoopPingPong()
             .setIgnoreTimeScale(true);
     }

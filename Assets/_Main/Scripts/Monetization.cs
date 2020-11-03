@@ -95,42 +95,4 @@ public class Monetization : MonoBehaviour
     {
         Debug.LogError($"{adName} failed to show with message: {args.Message}");
     }
-
-    /*public void OnUnityAdsDidFinish(string placementId, ShowResult result)
-    {
-        if (placementId == rewardedId)
-        {
-            Game.Instance.continued = true;
-            Game.Instance.ui.OnContinue(false);
-
-            if (result == ShowResult.Finished)
-                Game.Instance.ui.Continue();
-        }
-    }
-
-    public void OnUnityAdsDidError(string message)
-    {
-        Debug.LogError(message);
-    }
-
-
-    private void Start()
-    {
-        Advertisement.Initialize(gameId, testMode);
-        Advertisement.AddListener(this);
-    }
-
-    public IEnumerator ShowBanner()
-    {
-        while (Advertisement.IsReady(bannerId))
-            yield return null;
-        
-        Advertisement.Banner.Show(bannerId);
-    }
-
-    public void ShowRewardedAd()
-    {
-        Advertisement.Show(rewardedId);
-        Game.Instance.ui.OnContinue(true);
-    }*/
 }
