@@ -26,7 +26,7 @@ public class Localization : Singleton<Localization>
     {
         switch (lang)
         {
-            case SystemLanguage.English:    return "pl_PL";
+            case SystemLanguage.English:    return "en_GB";
             case SystemLanguage.Polish:     return "pl_PL";
             //case SystemLanguage.French:     return "fr_FR";
             //case SystemLanguage.German:     return "de_DE";

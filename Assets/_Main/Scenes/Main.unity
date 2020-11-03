@@ -4877,8 +4877,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a39b555052b3d194eb17f71b6479fea8, type: 2}
-  m_sharedMaterial: {fileID: -7948640534295311721, guid: a39b555052b3d194eb17f71b6479fea8,
+  m_fontAsset: {fileID: 11400000, guid: d88ec4ca31025654e9a08b1a12f767dd, type: 2}
+  m_sharedMaterial: {fileID: 8482557868499509059, guid: d88ec4ca31025654e9a08b1a12f767dd,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4904,8 +4904,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 192
-  m_fontSizeBase: 192
+  m_fontSize: 180
+  m_fontSizeBase: 180
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8260,7 +8260,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.25
+  orthographic size: 3.65625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -21451,7 +21451,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573391219}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
