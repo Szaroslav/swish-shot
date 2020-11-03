@@ -6,7 +6,6 @@ public class GPGS : MonoBehaviour
     protected void Start()
     {
         PlayGamesPlatform.Activate();
-        SignIn();
     }
 
     public static bool IsAuthenticated()

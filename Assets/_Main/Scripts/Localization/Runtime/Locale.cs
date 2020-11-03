@@ -38,6 +38,7 @@ public class Locale
             if (l.Length > 0)
             {
                 string[] s = l.Split(new char[] { '=' }, 2);
+                s[1] = s[1].Replace("\\n", "\n");
                 loc.Add(s[0], s[1]);
             }
         }

@@ -9,3 +9,7 @@ OWNED_TEXT=NABYTA
 RANDOM_TEXT=LOSUJ
 SHARE_WINDOW_TITLE_TEXT=Udostępnij swoim znajomym korzystając z:
 SHARE_MESSAGE_TEXT=Właśnie zdobyłem/am @score punktów w Swish Shot (https://play.google.com/store/apps/details?id=com.szaredko.basketball). Jesteś w stanie mnie pokonać? =)
+PRIVACY_POLICY_HEADER=SWISH SHOT\nPOLITYKA
+PRIVACY_POLICY_PARAGRAPH=Jakub Szaredko stworzył darmową grę "Swish Shot - gra koszykarska" wspomaganą reklamami. Ta usługa jest zapewniana dzięki Jakubowi Szaredko bez żadnych kosztów i przeznaczona do typowego użycia.\n\nJeśli się zdecydowałeś na skorzystanie z tej usługi, akceptujesz zbieranie i użycie informacji w oparciu o tę politykę. Dane personalne, które są zbierane są wykorzystywane do dostarczania i ulepszania usługi. Nie będę korzystał lub udostępniał tych danych z nikim oprócz podmiotów opisanych w Polityce Prywatności.
+PRIVACY_POLICY_READ_MORE=Dowiedz się więcej
+PRIVACY_POLICY_ACCEPT=AKCEPTUJĘ

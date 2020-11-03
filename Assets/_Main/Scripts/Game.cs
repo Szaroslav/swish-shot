@@ -108,4 +108,10 @@ public class Game : MonoBehaviour
         paused = false;
         Time.timeScale = 1;
     }
+
+    public void SignInGPGS()
+    {
+        GPGS.SignIn();
+        ui.screenUI.SetTrigger("loading");
+    }
 }

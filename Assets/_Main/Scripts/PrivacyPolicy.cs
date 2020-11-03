@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class PrivacyPolicy : MonoBehaviour
@@ -8,7 +10,7 @@ public class PrivacyPolicy : MonoBehaviour
 
     CanvasGroup cg;
     
-    void Start()
+    void Awake()
     {
         cg = GetComponent<CanvasGroup>();
 
@@ -16,12 +18,16 @@ public class PrivacyPolicy : MonoBehaviour
         {
             cg.alpha = 0;
             cg.interactable = cg.blocksRaycasts = false;
+
+            Game.Instance.SignInGPGS();
         }
         else
         {
             cg.alpha = 1;
             cg.interactable = cg.blocksRaycasts = true;
         }
+
+        StartCoroutine(WaitForRebuild());
     }
 
     public void OpenPrivacyPolicy()
@@ -31,13 +37,21 @@ public class PrivacyPolicy : MonoBehaviour
 
     public void OnAccept()
     {
-        PlayerPrefs.SetInt(privacyPolicyAcceptedKey, 1);
+        PlayerPrefs.SetInt(privacyPolicyAcceptedKey, 1);     
 
         LeanTween.value(gameObject, v => { cg.alpha = v; }, 1, 0, 0.33f)
             .setEaseInOutCubic()
             .setIgnoreTimeScale(true)
             .setOnComplete(() => {
                 cg.interactable = cg.blocksRaycasts = false;
+                Game.Instance.SignInGPGS();
             });
+    }
+
+    IEnumerator WaitForRebuild()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        LayoutRebuilder.MarkLayoutForRebuild(transform.GetChild(0).GetComponent<RectTransform>());
     }
 }

@@ -26,11 +26,11 @@ public class Localization : Singleton<Localization>
     {
         switch (lang)
         {
-            case SystemLanguage.English:    return "en_GB";
-            case SystemLanguage.French:     return "fr_FR";
-            case SystemLanguage.German:     return "de_DE";
+            case SystemLanguage.English:    return "pl_PL";
             case SystemLanguage.Polish:     return "pl_PL";
-            case SystemLanguage.Spanish:    return "es_ES";
+            //case SystemLanguage.French:     return "fr_FR";
+            //case SystemLanguage.German:     return "de_DE";
+            //case SystemLanguage.Spanish:    return "es_ES";
             default:                        return "en_GB";
         }
     }

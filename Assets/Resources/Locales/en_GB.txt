@@ -9,3 +9,7 @@ OWNED_TEXT=OWNED
 RANDOM_TEXT=RANDOM
 SHARE_WINDOW_TITLE_TEXT=Share with your friends using:
 SHARE_MESSAGE_TEXT=I've just scored @score points in Swish Shot (https://play.google.com/store/apps/details?id=com.szaredko.basketball). Would you beat me? =)
+PRIVACY_POLICY_HEADER=SWISH SHOT\nPRIVACY POLICY
+PRIVACY_POLICY_PARAGRAPH=Jakub Szaredko built the "Swish Shot - basketball game app" as a free ad supported app. This service is provided by Jakub Szaredko at no cost and is intended for use as is.\n\nIf you choose to use my service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in Privacy Policy.
+PRIVACY_POLICY_READ_MORE=Read more
+PRIVACY_POLICY_ACCEPT=ACCEPT
