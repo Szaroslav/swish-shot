@@ -21,6 +21,7 @@ public class Hoop : MonoBehaviour
 
     private Rigidbody2D rb;
     private CapsuleCollider2D[] rimColls;
+    private Vector3 rimPos;
 
     public void SetColliders(bool v)
     {
@@ -58,7 +59,14 @@ public class Hoop : MonoBehaviour
 
     public void Bounce()
     {
-        
+        LeanTween.cancel(rim.gameObject);
+        Debug.Log(rimPos + Vector3.down * 0.04f);
+        LeanTween.move(rim.gameObject, rimPos + Vector3.down * 0.04f, 0.25f)
+            .setEaseInOutCubic()
+            .setOnComplete(() => {
+                LeanTween.move(rim.gameObject, rimPos, 0.25f)
+                    .setEaseInOutCubic();
+            });
     }
 
     public void IncreaseSpeed(float v)
@@ -70,6 +78,7 @@ public class Hoop : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rimColls = rim.GetComponents<CapsuleCollider2D>();
+        rimPos = rim.transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

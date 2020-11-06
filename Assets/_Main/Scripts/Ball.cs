@@ -157,7 +157,7 @@ public class Ball : MonoBehaviour
             rb.velocity = FixVelocity();
             touchedRim = true;
 
-            Game.Instance.hoop.Bounce();
+            //Game.Instance.hoop.Bounce();
             //Debug.LogFormat("[{0}, {1}]", rb.velocity.x, rb.velocity.y);
             //rb.velocity *= 0.7f;
         }
