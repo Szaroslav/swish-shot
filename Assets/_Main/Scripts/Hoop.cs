@@ -20,12 +20,11 @@ public class Hoop : MonoBehaviour
     public EdgeCollider2D bottomTrigger;
 
     private Rigidbody2D rb;
+    private CapsuleCollider2D[] rimColls;
 
     public void SetColliders(bool v)
     {
-        BoxCollider2D[] colliders = rim.GetComponents<BoxCollider2D>();
-
-        foreach (BoxCollider2D c in colliders)
+        foreach (var c in rimColls)
             c.enabled = v;
 
         hoopTrigger.enabled = topTrigger.enabled = bottomTrigger.enabled = v;
@@ -57,6 +56,11 @@ public class Hoop : MonoBehaviour
         rb.velocity = (UnityEngine.Random.Range(0, 2) == 0 ? Vector2.left : Vector2.right) * MOVING_SPEED;
     }
 
+    public void Bounce()
+    {
+        
+    }
+
     public void IncreaseSpeed(float v)
     {
         rb.velocity += new Vector2(rb.velocity.x >= 0 ? v : -v, 0);
@@ -65,6 +69,7 @@ public class Hoop : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rimColls = rim.GetComponents<CapsuleCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
