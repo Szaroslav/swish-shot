@@ -1,18 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
+using System.Data;
 
 public class Scenery : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public SpriteRenderer background;
+    public SpriteRenderer floor;
+
     void Start()
     {
-        
-    }
+        DateTime now = DateTime.Now;
+        int h = now.Hour;
+        int m = now.Month;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        string season;
+        string night = "";
+
+        if (h >= 21 || h <= 6)
+            night = "-night";
+
+        if (m >= 3 && m <= 9)
+            season = "summer";
+        else if (m >= 10 && m <= 11)
+            season = "autumn";
+        else
+            season = "winter";
+
+        background.sprite = Resources.Load<Sprite>($"Scenery/background-{season}{night}");
     }
 }

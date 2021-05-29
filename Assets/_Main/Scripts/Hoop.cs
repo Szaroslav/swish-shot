@@ -14,10 +14,12 @@ public class Hoop : MonoBehaviour
     [NonSerialized]
     public bool moving = false;
 
+    [Header("Objects")]
     public GameObject rim;
     public CircleCollider2D hoopTrigger;
     public EdgeCollider2D topTrigger;
     public EdgeCollider2D bottomTrigger;
+    public GameObject bounceTrigger;
 
     private Rigidbody2D rb;
     private CapsuleCollider2D[] rimColls;
@@ -29,6 +31,7 @@ public class Hoop : MonoBehaviour
             c.enabled = v;
 
         hoopTrigger.enabled = topTrigger.enabled = bottomTrigger.enabled = v;
+        bounceTrigger.SetActive(v);
     }
 
     public void ExposeHoop(float z)
@@ -60,11 +63,10 @@ public class Hoop : MonoBehaviour
     public void Bounce()
     {
         LeanTween.cancel(rim.gameObject);
-        Debug.Log(rimPos + Vector3.down * 0.04f);
-        LeanTween.move(rim.gameObject, rimPos + Vector3.down * 0.04f, 0.25f)
+        LeanTween.moveY(rim.gameObject, rimPos.y - 0.035f, 0.25f)
             .setEaseInOutCubic()
             .setOnComplete(() => {
-                LeanTween.move(rim.gameObject, rimPos, 0.25f)
+                LeanTween.moveY(rim.gameObject, rimPos.y, 0.25f)
                     .setEaseInOutCubic();
             });
     }

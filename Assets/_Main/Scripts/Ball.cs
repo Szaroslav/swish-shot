@@ -125,25 +125,29 @@ public class Ball : MonoBehaviour
             Game.Instance.UpdateGame();
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.tag == "RimTrigger")
+        if (collider.tag == "RimTrigger")
         {
-            if (collision.name == "Top trigger")
+            if (collider.name == "Top trigger")
             {
                 passed[0] = true;
             }
-            else if (collision.name == "Bottom trigger" && passed[0])
+            else if (collider.name == "Bottom trigger" && passed[0])
             {
                 passed[1] = true;
                 Game.Instance.AddPoint();
             }
         }
+        else if (collider.name == "Bounce trigger")
+        {
+            Game.Instance.hoop.Bounce();
+        }
     }
 
-    protected void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collider)
     {
-        if (!IsReseting() && (collision.name == "Hoop trigger" || collision.tag == "GameBorder"))
+        if (!IsReseting() && (collider.name == "Hoop trigger" || collider.tag == "GameBorder"))
         {
             animator.SetBool("reset", true);
             StartCoroutine(IsGameOver());
@@ -156,8 +160,6 @@ public class Ball : MonoBehaviour
         {
             rb.velocity = FixVelocity();
             touchedRim = true;
-
-            //Game.Instance.hoop.Bounce();
             //Debug.LogFormat("[{0}, {1}]", rb.velocity.x, rb.velocity.y);
             //rb.velocity *= 0.7f;
         }
