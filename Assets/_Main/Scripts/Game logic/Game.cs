@@ -61,6 +61,7 @@ public class Game : MonoBehaviour
     public void UpdateStage()
     {
         int score = Progress.Instance.score;
+
         if (stage == 0 && score >= STAGE_1 && score < STAGE_2)
         {
             stage = 1;
@@ -70,6 +71,10 @@ public class Game : MonoBehaviour
         {
             stage = 2;
             Progress.Instance.SetCoins(3);
+        }
+        else if (stage == 2)
+        {
+            hoop.IncreaseSpeed(0.035f);
         }
     }
 

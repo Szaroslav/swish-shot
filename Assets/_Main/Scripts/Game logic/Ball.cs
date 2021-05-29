@@ -5,11 +5,12 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Ball : MonoBehaviour
 {
-    public const float THROW_FORCE      = 25.0f;
+    public const float THROW_FORCE      = 15.0f;
     public const float TORQUE           = 20.0f;
-    public const float GRAVITY_SCALE    = 6.2f;
+    public const float GRAVITY_SCALE    = 2.2f;
     public const float SCALE_DURATION   = 0.66f;
-    public const float BALL_SCALE       = 0.5f;
+    public const float BALL_RIM_SCALE   = 0.75f;
+    public const float BALL_SPAWN_SCALE = 1.9f;
     public const float RANDOM_X         = 1.0f;
     public const float SHADOW_MAGNITUDE = 0.6f;
     public const float FIX_BOUNCE_X     = 0.1f;
@@ -37,10 +38,10 @@ public class Ball : MonoBehaviour
         position = transform.position;
     }
 
-    protected void Update()
+    protected void FixedUpdate()
     {
-        if (moving && rb.velocity.y < 0)
-            rb.gravityScale = GRAVITY_SCALE * 0.65f;
+        //if (moving && rb.velocity.y < 0)
+            //rb.gravityScale = GRAVITY_SCALE * 0.65f;
 
         //if (moving)
             //Debug.Log(transform.position.y);
@@ -65,7 +66,9 @@ public class Ball : MonoBehaviour
 
     public void Throw(Vector2 direction, float f)
     {
+        Debug.Log("Throw");
         rb.AddForce(direction * THROW_FORCE * f, ForceMode2D.Impulse);
+        //rb.AddForce(direction * THROW_FORCE * f * 50);
         rb.AddTorque(Mathf.Clamp(direction.x * TORQUE, -1, 1), ForceMode2D.Impulse);
         rb.gravityScale = GRAVITY_SCALE;
         
@@ -90,7 +93,7 @@ public class Ball : MonoBehaviour
             p = new Vector3(UnityEngine.Random.Range(-RANDOM_X, RANDOM_X), p.y, p.z);
 
         transform.position = p;
-        transform.localScale = Vector3.one;
+        transform.localScale = Vector3.one * BALL_SPAWN_SCALE;
         transform.eulerAngles = Vector3.zero;
         shadow.enabled = false;
         shadow.transform.position = p + new Vector3(0, -0.5f, 0);
@@ -122,25 +125,29 @@ public class Ball : MonoBehaviour
             Game.Instance.UpdateGame();
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.tag == "RimTrigger")
+        if (collider.tag == "RimTrigger")
         {
-            if (collision.name == "Top trigger")
+            if (collider.name == "Top trigger")
             {
                 passed[0] = true;
             }
-            else if (collision.name == "Bottom trigger" && passed[0])
+            else if (collider.name == "Bottom trigger" && passed[0])
             {
                 passed[1] = true;
                 Game.Instance.AddPoint();
             }
         }
+        else if (collider.name == "Bounce trigger")
+        {
+            Game.Instance.hoop.Bounce();
+        }
     }
 
-    protected void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collider)
     {
-        if (!IsReseting() && (collision.name == "Hoop trigger" || collision.tag == "GameBorder"))
+        if (!IsReseting() && (collider.name == "Hoop trigger" || collider.tag == "GameBorder"))
         {
             animator.SetBool("reset", true);
             StartCoroutine(IsGameOver());
@@ -153,17 +160,20 @@ public class Ball : MonoBehaviour
         {
             rb.velocity = FixVelocity();
             touchedRim = true;
+            //Debug.LogFormat("[{0}, {1}]", rb.velocity.x, rb.velocity.y);
+            //rb.velocity *= 0.7f;
         }
     }
 
     private Vector2 FixVelocity()
     {
         Vector2 v = rb.velocity;
-        if (!touchedRim && Mathf.Abs(v.x) > 1) v.x *= 0.5f;
-        float m = v.magnitude;
+        Debug.Log(v.magnitude);
+        //if (!touchedRim && Mathf.Abs(v.x) > 1) v.x *= 0.5f;
+        float m = touchedRim || Mathf.Abs(v.normalized.x) > 0.3f ? v.magnitude : v.magnitude * 1.33f;
         v.Normalize();
 
-        if (!Game.Instance.hoop.moving && v.x > -FIX_BOUNCE_X && v.x < FIX_BOUNCE_X)
+        if (!Game.Instance.hoop.moving && Mathf.Abs(v.x) < FIX_BOUNCE_X)
             return new Vector2(v.x >= 0 ? FIX_BOUNCE_X : -FIX_BOUNCE_X, v.y) * m;
 
         return v * m;

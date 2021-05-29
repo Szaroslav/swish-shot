@@ -43,7 +43,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: 35c822f5a220f684386dbc933e69b7d5, type: 3}
     - {fileID: 102900000, guid: 74e2ee443146b974bacf651a32907e45, type: 3}
-    totalSpriteSurfaceArea: 921400
+    totalSpriteSurfaceArea: 937784
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -55,6 +55,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 997352435df081a4283ea57060dc7a5f, type: 3}
   - {fileID: 21300000, guid: a68836073ae046c4c959bb65784719ba, type: 3}
   - {fileID: 21300000, guid: 5ec6b677d6cfdbd4f8ad856ae662af81, type: 3}
+  - {fileID: 21300000, guid: c28d3897241b1354d9caf45a055ad770, type: 3}
   - {fileID: 21300000, guid: cda704387a5d7a542a84d3099382ddc9, type: 3}
   - {fileID: 21300000, guid: 1657ea98906f85f44b68aa9fc6c887c3, type: 3}
   - {fileID: 21300000, guid: e53844a89a397a54e95a6ddfd2bf0750, type: 3}
@@ -82,6 +83,7 @@ SpriteAtlas:
   - red-purple-gradient
   - fully-rounded-rectangle
   - rate
+  - red-purple-gradient-circle
   - rounded-square
   - leaderboard
   - play-again

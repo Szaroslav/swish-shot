@@ -14,11 +14,11 @@ public class UI : MonoBehaviour
     [Header("Sprite atlases")]
     public SpriteAtlas uiAtlas;
 
-    [Header("Animators")]
+    [Header("Panels")]
     public Animator worldUI;
     public Animator screenUI;
-    public UIGameOver gameOver; ///////////
     public Animator settings;
+    public UIGameOver gameOver;
 
     [Header("Texts")]
     public TextMeshProUGUI[] score;

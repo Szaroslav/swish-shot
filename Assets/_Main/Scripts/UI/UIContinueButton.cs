@@ -30,7 +30,7 @@ public class UIContinueButton : MonoBehaviour
 
         if (time >= 1)
         {
-            VerifyState();
+            //VerifyState();
             time = 0;
         }
     }
@@ -47,13 +47,16 @@ public class UIContinueButton : MonoBehaviour
     {
         btn.interactable = true;
 
+        Color red = new Color(0.949f, 0.098f, 0.223f);
+        Color purple = new Color(0.704f, 0.204f, 0.886f);
+
         LeanTween.scale(rt, Vector3.one * 1.05f, 0.75f)
             .setEaseInOutCubic()
             .setLoopPingPong()
             .setIgnoreTimeScale(true);
         LeanTween.value(gameObject, c => {
             img.color = c;
-        }, defaultColor, new Color(0.704f, 0.204f, 0.886f), 1.5f)
+        }, defaultColor, red, 0.75f)
             .setLoopPingPong()
             .setIgnoreTimeScale(true);
     }

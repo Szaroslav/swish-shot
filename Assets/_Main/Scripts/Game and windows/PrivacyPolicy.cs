@@ -37,13 +37,13 @@ public class PrivacyPolicy : MonoBehaviour
 
     public void OnAccept()
     {
-        PlayerPrefs.SetInt(privacyPolicyAcceptedKey, 1);     
+        PlayerPrefs.SetInt(privacyPolicyAcceptedKey, 1);
+        cg.interactable = cg.blocksRaycasts = false;
 
         LeanTween.value(gameObject, v => { cg.alpha = v; }, 1, 0, 0.33f)
             .setEaseInOutCubic()
             .setIgnoreTimeScale(true)
             .setOnComplete(() => {
-                cg.interactable = cg.blocksRaycasts = false;
                 Game.Instance.SignInGPGS();
             });
     }

@@ -14,21 +14,24 @@ public class Hoop : MonoBehaviour
     [NonSerialized]
     public bool moving = false;
 
+    [Header("Objects")]
     public GameObject rim;
     public CircleCollider2D hoopTrigger;
     public EdgeCollider2D topTrigger;
     public EdgeCollider2D bottomTrigger;
+    public GameObject bounceTrigger;
 
     private Rigidbody2D rb;
+    private CapsuleCollider2D[] rimColls;
+    private Vector3 rimPos;
 
     public void SetColliders(bool v)
     {
-        BoxCollider2D[] colliders = rim.GetComponents<BoxCollider2D>();
-
-        foreach (BoxCollider2D c in colliders)
+        foreach (var c in rimColls)
             c.enabled = v;
 
         hoopTrigger.enabled = topTrigger.enabled = bottomTrigger.enabled = v;
+        bounceTrigger.SetActive(v);
     }
 
     public void ExposeHoop(float z)
@@ -57,16 +60,34 @@ public class Hoop : MonoBehaviour
         rb.velocity = (UnityEngine.Random.Range(0, 2) == 0 ? Vector2.left : Vector2.right) * MOVING_SPEED;
     }
 
+    public void Bounce()
+    {
+        LeanTween.cancel(rim.gameObject);
+        LeanTween.moveY(rim.gameObject, rimPos.y - 0.035f, 0.25f)
+            .setEaseInOutCubic()
+            .setOnComplete(() => {
+                LeanTween.moveY(rim.gameObject, rimPos.y, 0.25f)
+                    .setEaseInOutCubic();
+            });
+    }
+
+    public void IncreaseSpeed(float v)
+    {
+        rb.velocity += new Vector2(rb.velocity.x >= 0 ? v : -v, 0);
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rimColls = rim.GetComponents<CapsuleCollider2D>();
+        rimPos = rim.transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name == "Hoop border")
         {
-            rb.velocity = (rb.velocity.x > 0 ? Vector2.left : Vector2.right) * MOVING_SPEED;
+            rb.velocity *= -1;
         }
     }
 }
