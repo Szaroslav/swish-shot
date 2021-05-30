@@ -1,4 +1,4 @@
-# <img src="https://szaredko.com/swish-shot/images/ggame-icon.png" width="30"> Swish Shot
+# <img src="https://szaredko.com/swish-shot/images/game-icon.png" width="30"> Swish Shot
 ![](https://szaredko.com/swish-shot/images/feature-graphic.png)
  
 Swish Shot is a 2D mobile basketball game, made in Unity. The gameplay is very easy, you have to be only accurate in swiping.
