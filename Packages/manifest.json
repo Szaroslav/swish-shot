@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.google.external-dependency-manager": "1.2.161",
     "com.unity.analytics": "3.3.5",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.package-manager-ui": "2.1.2",

@@ -66,9 +66,7 @@ public class Ball : MonoBehaviour
 
     public void Throw(Vector2 direction, float f)
     {
-        Debug.Log("Throw");
         rb.AddForce(direction * THROW_FORCE * f, ForceMode2D.Impulse);
-        //rb.AddForce(direction * THROW_FORCE * f * 50);
         rb.AddTorque(Mathf.Clamp(direction.x * TORQUE, -1, 1), ForceMode2D.Impulse);
         rb.gravityScale = GRAVITY_SCALE;
         
@@ -160,16 +158,12 @@ public class Ball : MonoBehaviour
         {
             rb.velocity = FixVelocity();
             touchedRim = true;
-            //Debug.LogFormat("[{0}, {1}]", rb.velocity.x, rb.velocity.y);
-            //rb.velocity *= 0.7f;
         }
     }
 
     private Vector2 FixVelocity()
     {
         Vector2 v = rb.velocity;
-        Debug.Log(v.magnitude);
-        //if (!touchedRim && Mathf.Abs(v.x) > 1) v.x *= 0.5f;
         float m = touchedRim || Mathf.Abs(v.normalized.x) > 0.3f ? v.magnitude : v.magnitude * 1.33f;
         v.Normalize();
 
