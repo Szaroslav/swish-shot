@@ -7,6 +7,10 @@ public class Scenery : MonoBehaviour
     public SpriteRenderer background;
     public SpriteRenderer floor;
 
+    [Space(6)]
+
+    public SpriteRenderer backgroundScreenshot;
+
     void Start()
     {
         DateTime now = DateTime.Now;
@@ -26,6 +30,6 @@ public class Scenery : MonoBehaviour
         else
             season = "winter";
 
-        background.sprite = Resources.Load<Sprite>($"Scenery/background-{season}{night}");
+        background.sprite = backgroundScreenshot.sprite = Resources.Load<Sprite>($"Scenery/background-{season}{night}");
     }
 }
