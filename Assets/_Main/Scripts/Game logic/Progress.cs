@@ -25,7 +25,6 @@ public class Progress : Singleton<Progress>
         gameCoins = score = 0;
         bestScore = LoadInt(BEST_SCORE_KEY);
         coins = LoadFloat(COINS_KEY);
-        coins = 99999;
         string n = LoadString(SKIN_BALL_KEY, "basketball_default");
         currentBallSkin = Resources.Load<Sprite>(UIShop.BALL_L_SKINS_PATH + n);
     }

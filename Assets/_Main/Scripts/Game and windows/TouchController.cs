@@ -6,7 +6,7 @@ public enum InputPhase { Nothing, Began, Moved, Ended }
 public class TouchController : MonoBehaviour
 {
     public const float MIN_SWIPE_MAGNITUDE  = 0.3f;
-    public const float MAX_SWIPE_MAGNITUDE  = 111.25f; //1.25
+    public const float MAX_SWIPE_MAGNITUDE  = 1.25f;
     public const float MAX_BALL_Y           = 0.15f;
     public float BALL_GRAVITY               = 5.4f;
 

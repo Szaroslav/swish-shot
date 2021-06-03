@@ -6,7 +6,7 @@ using System.Collections;
 public class Ball : MonoBehaviour
 {
     public const float THROW_FORCE      = 500.0f;
-    public const float TORQUE           = 15.0f;
+    public const float TORQUE           = 10.0f;
     public const float GRAVITY_SCALE    = 1.0f;
     public const float SCALE_DURATION   = 0.66f;
     public const float BALL_RIM_SCALE   = 0.75f;
@@ -42,7 +42,7 @@ public class Ball : MonoBehaviour
     {
         if (gravity)
         {
-            rb.AddForce(Vector2.down * 12f);
+            rb.AddForce(Vector2.down * 15f);
         }
     }
 
