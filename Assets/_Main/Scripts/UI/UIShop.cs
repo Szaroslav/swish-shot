@@ -7,7 +7,7 @@ using TMPro;
 
 public class UIShop : MonoBehaviour
 {
-    public const int RANDOM_BALL_PRICE        = 70;
+    public const int RANDOM_BALL_PRICE      = 100;
     public const float COINS_DURATION       = 0.15f;
     public const string BALL_L_SKINS_PATH   = "Skins/Balls/512x512/";
     
