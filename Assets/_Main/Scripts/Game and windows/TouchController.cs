@@ -6,7 +6,7 @@ public enum InputPhase { Nothing, Began, Moved, Ended }
 public class TouchController : MonoBehaviour
 {
     public const float MIN_SWIPE_MAGNITUDE  = 0.3f;
-    public const float MAX_SWIPE_MAGNITUDE  = 1.25f;
+    public const float MAX_SWIPE_MAGNITUDE  = 111.25f; //1.25
     public const float MAX_BALL_Y           = 0.15f;
     public float BALL_GRAVITY               = 5.4f;
 
@@ -135,24 +135,37 @@ public class TouchController : MonoBehaviour
         
         sd.Normalize();
         sd = ClampedVector2(sd, minSwipe, maxSwipe);
-        Vector2 d = AimAssist(ballPosition, sd);
-        d = FixThrow(d);
+        
+        Vector2 d = FixThrow(ballPosition, sd);
+        d = AimAssist(ballPosition, sd);
         ball.Throw(d.normalized, f);
     }
 
-    private Vector2 FixThrow(Vector2 dir)
+    // ============= Fixes gravity influence and calculates ball position at its maximum height ============= //
+    private Vector2 FixThrow(Vector2 p, Vector2 dir)
     {
-        Vector2 v = dir * (hoop.rim.transform.position.y / dir.y);
-        return new Vector2(v.x / BALL_GRAVITY, v.y);
+        RaycastHit2D hit = Physics2D.Raycast(p, dir, 25, 1 << 8);
+        if (hit && hit.collider.name == "Rim center")
+        {
+            float hoopX = hoop.transform.position.x;
+            float x = hit.point.x / Mathf.Clamp((hit.point.x - hoopX) / 0.1f, 1, 10);
+            float y = hit.point.y + 0.7f;
+
+            Vector2 v = new Vector2(x, y);
+            dir = v - p;
+        } 
+
+        return dir;
     }
 
+    // ============= Make getting points easier ============= //
     private Vector2 AimAssist(Vector2 p, Vector2 dir)
     {
         RaycastHit2D hit = Physics2D.Raycast(p, dir, 25, 1 << 8);
         if (hit && hit.collider.name == "Aim assistance")
         {
             float hitX = hit.collider.transform.position.x;
-            float x = hitX - (hitX - hit.point.x) / 1.5f;
+            float x = hitX - (hitX - hit.point.x) / 2f;
             return new Vector2(x, hit.point.y) - p;
         }
 

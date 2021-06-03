@@ -42,12 +42,14 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 9923d853e8b29e445bd164abc421e63c, type: 3}
-    totalSpriteSurfaceArea: 1179648
+    totalSpriteSurfaceArea: 1310720
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: e3a711c007017a94cabe08a75bd1088e, type: 3}
+  - {fileID: 21300000, guid: 599111b486be6cc41b390f6e5ff067c6, type: 3}
   - {fileID: 21300000, guid: 1506c0f410e988442a0f94b86d17b61f, type: 3}
+  - {fileID: 21300000, guid: de9f2045e8c80d74a81701f71094c56a, type: 3}
   - {fileID: 21300000, guid: b1e4124534a3d9c459fc1f386ff4f866, type: 3}
   - {fileID: 21300000, guid: 354445f52feb6f044959b0e63d6b654b, type: 3}
   - {fileID: 21300000, guid: 2ccb35a6096fab94995fcc300d935075, type: 3}
@@ -66,7 +68,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ab4f558f4d1bc64469d801188a566b63, type: 3}
   m_PackedSpriteNamesToIndex:
   - basketball_red
+  - pixel_discoball
   - volleyball
+  - pixel_basketball
   - basketball_black_red
   - basketball_black_cyan
   - basketball_white_yellow

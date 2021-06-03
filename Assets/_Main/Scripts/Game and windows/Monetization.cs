@@ -14,7 +14,9 @@ public class Monetization : MonoBehaviour
 
     void Start()
     {
-    #if UNITY_ANDROID
+    #if UNITY_EDITOR
+        continueAdId = "unexpected_platform";
+    #elif UNITY_ANDROID
         continueAdId = !testMode ? "ca-app-pub-5324115406353383/8512491246" : "ca-app-pub-3940256099942544/5224354917";
     #elif UNITY_IOS
         continueAdId = "ca-app-pub-3940256099942544/1712485313";

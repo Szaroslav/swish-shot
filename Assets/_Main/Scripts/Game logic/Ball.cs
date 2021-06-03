@@ -5,9 +5,9 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Ball : MonoBehaviour
 {
-    public const float THROW_FORCE      = 15.0f;
-    public const float TORQUE           = 20.0f;
-    public const float GRAVITY_SCALE    = 2.2f;
+    public const float THROW_FORCE      = 500.0f;
+    public const float TORQUE           = 15.0f;
+    public const float GRAVITY_SCALE    = 1.0f;
     public const float SCALE_DURATION   = 0.66f;
     public const float BALL_RIM_SCALE   = 0.75f;
     public const float BALL_SPAWN_SCALE = 1.9f;
@@ -27,10 +27,10 @@ public class Ball : MonoBehaviour
     [NonSerialized]
     public bool[] passed                = new bool[2];
 
+    private bool gravity = false;
+
     private Rigidbody2D rb;
     private Vector3 position;
-
-    private Vector2 pp, cp;
 
     protected void Awake()
     {
@@ -40,36 +40,24 @@ public class Ball : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        //if (moving && rb.velocity.y < 0)
-            //rb.gravityScale = GRAVITY_SCALE * 0.65f;
-
-        //if (moving)
-            //Debug.Log(transform.position.y);
+        if (gravity)
+        {
+            rb.AddForce(Vector2.down * 12f);
+        }
     }
 
-    /*protected void FixedUpdate()
+    private IEnumerator WaitForGravity()
     {
-        if (moving)
-        {
-            pp = cp;
-            cp = transform.position;
-            float t = (pp.y - 1.625f) / (pp.y - cp.y);
-
-            if (moving && pp.y > cp.y && cp.y <= 1.625f)
-            {
-                Vector2 v = new Vector2(pp.x - (pp.x - cp.x) * t, pp.y - (pp.y - cp.y) * t);
-                Debug.Log(v.x + ", " + v.y);
-                //Debug.Log("Current position Y: " + cp.y + ", " + (pp.y - (pp.y - cp.y) * t) + " Y X: " + (pp.x - (pp.x - cp.x) * t));
-            }
-        }
-    }*/
+        yield return new WaitForSeconds(0.5f);
+        gravity = true;
+    }
 
     public void Throw(Vector2 direction, float f)
     {
-        rb.AddForce(direction * THROW_FORCE * f, ForceMode2D.Impulse);
+        rb.AddForce(direction * THROW_FORCE * f);
         rb.AddTorque(Mathf.Clamp(direction.x * TORQUE, -1, 1), ForceMode2D.Impulse);
-        rb.gravityScale = GRAVITY_SCALE;
-        
+        StartCoroutine(WaitForGravity());
+
         shadow.Set(SCALE_DURATION);
         animator.SetBool("throw", true);
 
@@ -78,9 +66,9 @@ public class Ball : MonoBehaviour
 
     public void UpdateBall()
     {
-        moving = touchedRim = passed[0] = passed[1] = false;
+        moving = touchedRim = passed[0] = passed[1] = gravity = false;
 
-        rb.velocity = Vector3.zero;
+        rb.velocity = Vector2.zero;
         rb.angularVelocity = rb.gravityScale = 0;
 
         animator.SetBool("throw", false);
@@ -139,7 +127,7 @@ public class Ball : MonoBehaviour
         }
         else if (collider.name == "Bounce trigger")
         {
-            Game.Instance.hoop.Bounce();
+            //Game.Instance.hoop.Bounce();
         }
     }
 
