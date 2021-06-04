@@ -31,12 +31,14 @@ public class TouchController : MonoBehaviour
 
             if (phase != InputPhase.Nothing)
             {
+                // ============= Cancel the touch input if used more than 1 finger ============= //
                 if (touch && Input.touchCount > 1)
                 {
                     ResetInput();
                     return;
                 }
 
+                // ============= Input begin phase (finger touches a screen) ============= //
                 if (phase == InputPhase.Began)
                 {
                     ball.touched = DetectBall(currentPosition);
@@ -44,6 +46,7 @@ public class TouchController : MonoBehaviour
                     ballPosition = ball.transform.position;
                     shadowPosition = ball.shadow.transform.position;
                 }
+                // ============= Input move phase (finger moves) ============= //
                 else if (phase == InputPhase.Moved && ball.touched)
                 {
                     Vector2 swipeDelta = (Vector2)currentPosition - startPosition;
@@ -62,6 +65,7 @@ public class TouchController : MonoBehaviour
                     if (swipeDelta.magnitude >= MAX_SWIPE_MAGNITUDE && swipeDelta.y >= 0)
                         ThrowBall(swipeDelta, f);
                 }
+                // ============= Input end phase (finger no longer touches a screen) ============= //
                 else if (phase == InputPhase.Ended && !startPosition.Equals(currentPosition) 
                          && ball.touched && !ball.IsScaling())
                 {
